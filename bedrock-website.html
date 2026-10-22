@@ -1,0 +1,2172 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="BEDROCK Communications: Asesoría de comunicación estratégica, reputación y manejo de crisis para empresas mineras, infraestructura, proyectos en territorio y líderes.">
+<title>BEDROCK Communications | Reputación bajo escrutinio</title>
+
+<!-- Tipografías: Bebas Neue (sólida, vertical, colosal) + Newsreader (editorial, itálica clásica) + Inter (técnica, limpia) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   BEDROCK COMMUNICATIONS — TOTAL CINEMATIC SCROLLYTELLING & DARK PARALLAX
+   Toda la web es una experiencia continua de scroll, parallax, fijación de
+   escenas (pinning), deslizamiento horizontal y apilamiento 3D de tarjetas.
+   ========================================================================== */
+:root {
+  --bg-deep: #050608;
+  --bg-surface: #0A0C10;
+  --bg-card: #111319;
+  --bg-card-hover: #171A22;
+  
+  --text-white: #FFFFFF;
+  --text-sub: #D8DAE5;
+  --text-muted: #808494;
+  --text-faint: #343744;
+  
+  --red: #FF2600;
+  --red-hover: #FF3D19;
+  --red-glow: rgba(255, 38, 0, 0.45);
+  --red-soft: rgba(255, 38, 0, 0.14);
+  --blue-accent: #0066FF;
+  --gold-accent: #FFB800;
+  
+  --border-subtle: #171922;
+  --border-light: #242735;
+  --border-active: #FF2600;
+  
+  --font-hero: "Bebas Neue", -apple-system, sans-serif;
+  --font-accent: "Newsreader", "Playfair Display", "Georgia", "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  
+  --shadow-massive: 0 32px 80px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 40px rgba(255, 38, 0, 0.35);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-deep);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Grano analógico ambiental */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 0);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 999;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+
+.container {
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+}
+
+/* ==========================================================================
+   TIPOGRAFÍA EDITORIAL & FOLIOS (CERO CÁPSULAS O BORDES ARTIFICIALES)
+   ========================================================================== */
+.editorial-folio {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: clamp(10px, 1.8vh, 18px);
+}
+
+.editorial-title {
+  font-family: var(--font-hero);
+  font-size: clamp(38px, min(5.8vw, 7.5vh), 78px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin-bottom: clamp(12px, 2vh, 20px);
+}
+.editorial-title .text-accent {
+  font-size: 0.95em;
+  line-height: 0.95;
+}
+
+/* ==========================================================================
+   FLOATING HUD LATERAL: NAVEGADOR DE LÍNEA ULTRA-MINIMALISTA
+   ========================================================================== */
+.chapter-hud {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 850;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  pointer-events: auto;
+}
+.hud-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  color: var(--text-muted);
+  font-family: var(--font-hero);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0.45;
+}
+.hud-item span.hud-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: all 0.25s ease;
+}
+.hud-item span.hud-label {
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all 0.25s ease;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.hud-item:hover, .hud-item.is-current {
+  opacity: 1;
+  color: #FFFFFF;
+}
+.hud-item.is-current span.hud-dot {
+  background: var(--red);
+  transform: scale(1.8);
+  box-shadow: 0 0 12px var(--red-glow);
+}
+.hud-item.is-current span.hud-label,
+.hud-item:hover span.hud-label {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--red);
+}
+@media (max-width: 1100px) {
+  .chapter-hud { display: none; }
+}
+
+/* ==========================================================================
+   HEADER CINEMATOGRÁFICO
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 950;
+  background: rgba(5, 6, 8, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
+}
+.site-header.scrolled {
+  background: rgba(10, 12, 16, 0.98);
+  border-bottom-color: var(--border-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  gap: 20px;
+}
+
+.brand-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.brand-logo b {
+  font-family: var(--font-hero);
+  font-size: clamp(26px, 2.5vw, 32px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+}
+.brand-logo b sup {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--red);
+  margin-left: 2px;
+}
+.brand-logo span {
+  margin-top: 2px;
+  background: var(--red);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.36em;
+  text-align: center;
+  padding: 2px 0 2px 0.36em;
+  border-radius: var(--radius-xs);
+  box-shadow: 0 0 14px var(--red-glow);
+}
+
+.header-navigation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header-navigation a.nav-item {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.header-navigation a.nav-item:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.header-skip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-white);
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-light);
+  transition: all 0.2s;
+}
+.header-skip-link:hover {
+  border-color: var(--red);
+  color: var(--red);
+  transform: translateX(3px);
+}
+
+.btn-primary-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--red);
+  color: #FFFFFF !important;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 11px 24px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 20px var(--red-glow);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary-cta:hover {
+  background: var(--red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255, 38, 0, 0.6);
+}
+
+/* ==========================================================================
+   CAPÍTULO 01: HERO SCROLLYTELLING CON FOTOGRAFÍA EN SUSPENSIÓN 3D
+   Inspirado en el sistema escénico de All Together Global Cleanup
+   ========================================================================== */
+.scrolly-cinematic {
+  position: relative;
+  min-height: 520vh;
+  background-color: var(--bg-deep);
+}
+
+.scrolly-viewport {
+  position: sticky;
+  top: 68px;
+  height: calc(100vh - 68px);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-backdrop {
+  position: absolute;
+  inset: -15%;
+  z-index: 1;
+  background-image: linear-gradient(180deg, rgba(5, 6, 8, 0.70) 0%, rgba(5, 6, 8, 0.95) 100%),
+                    url('https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=1600&q=85');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+  filter: contrast(1.25) brightness(0.65);
+  transform: scale(1.05);
+  will-change: transform;
+}
+
+.cutout-plane {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.cutout-plane.plane-back { z-index: 2; }
+.cutout-plane.plane-front { z-index: 6; }
+
+/* RECORTES FOTOGRÁFICOS AUTÉNTICOS: LIBRES DE MARCOS O TARJETAS */
+.floating-cutout {
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.95)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.85));
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  opacity: 0;
+  will-change: transform, opacity;
+  background: transparent;
+  border: none;
+}
+.floating-cutout img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.floating-cutout.active { opacity: 1; }
+
+/* Siluetas orgánicas con clip-path realista para cortar objetos físicos */
+.cutout-rock {
+  clip-path: polygon(18% 2%, 84% 5%, 98% 38%, 90% 76%, 68% 98%, 24% 94%, 2% 62%, 5% 26%);
+}
+.cutout-core {
+  clip-path: polygon(14% 2%, 86% 2%, 98% 88%, 86% 98%, 14% 98%, 2% 88%);
+}
+.cutout-news {
+  clip-path: polygon(2% 4%, 96% 1%, 99% 88%, 84% 97%, 68% 92%, 52% 98%, 34% 93%, 16% 97%, 1% 88%);
+}
+.cutout-mic {
+  clip-path: polygon(24% 0%, 76% 0%, 88% 52%, 68% 100%, 32% 100%, 12% 52%);
+}
+.cutout-gauge {
+  clip-path: circle(49% at 50% 50%);
+}
+.cutout-seal {
+  clip-path: polygon(50% 0%, 80% 10%, 98% 38%, 88% 72%, 86% 100%, 50% 86%, 14% 100%, 12% 72%, 2% 38%, 20% 10%);
+}
+
+.item-core {
+  top: clamp(14px, 4vh, 40px);
+  left: clamp(14px, 3.2vw, 54px);
+  width: clamp(110px, min(13vw, 17vh), 180px);
+  height: auto;
+  aspect-ratio: 4/5;
+  transform: translateY(140px) rotate(-10deg) scale(0.85);
+}
+.item-core.active { transform: translateY(0) rotate(-4deg) scale(1); }
+
+.item-news {
+  bottom: clamp(52px, 8vh, 80px);
+  left: clamp(14px, 3.2vw, 54px);
+  width: clamp(130px, min(16vw, 19vh), 210px);
+  height: auto;
+  aspect-ratio: 16/10;
+  transform: translateY(150px) rotate(12deg) scale(0.8);
+}
+.item-news.active { transform: translateY(0) rotate(4deg) scale(1); }
+
+.item-mic {
+  top: clamp(14px, 4vh, 40px);
+  right: clamp(14px, 3.2vw, 54px);
+  width: clamp(110px, min(13vw, 17vh), 180px);
+  height: auto;
+  aspect-ratio: 4/5;
+  transform: translateY(140px) rotate(14deg) scale(0.85);
+}
+.item-mic.active { transform: translateY(0) rotate(6deg) scale(1); }
+
+.item-rock {
+  bottom: clamp(52px, 8vh, 80px);
+  right: clamp(14px, 3.2vw, 54px);
+  width: clamp(130px, min(15vw, 19vh), 210px);
+  height: auto;
+  aspect-ratio: 16/11;
+  transform: translateY(150px) rotate(-12deg) scale(0.8);
+}
+.item-rock.active { transform: translateY(0) rotate(-4deg) scale(1); }
+
+.item-gauge {
+  top: 48%;
+  left: clamp(8px, 1.8vw, 24px);
+  width: clamp(90px, min(10vw, 14vh), 140px);
+  height: auto;
+  aspect-ratio: 1/1;
+  transform: translateY(100px) rotate(-16deg) scale(0.7);
+}
+.item-gauge.active { transform: translateY(0) rotate(-8deg) scale(1); }
+
+.item-seal {
+  top: 46%;
+  right: clamp(8px, 1.8vw, 24px);
+  width: clamp(90px, min(10vw, 14vh), 140px);
+  height: auto;
+  aspect-ratio: 1/1;
+  transform: translateY(100px) rotate(16deg) scale(0.7);
+}
+.item-seal.active { transform: translateY(0) rotate(8deg) scale(1); }
+
+.scrolly-text-stage {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  width: 100%;
+  max-width: min(1200px, 92vw);
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(8px, 1.8vh, 24px) 16px;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: scale(0.94) translateY(30px);
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.story-slide.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+/* ENCUADRE TIPOGRÁFICO CINEMATOGRÁFICO: BEBAS NEUE + NEWSREADER ITÁLICA */
+.kinetic-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(12px, 2vh, 22px);
+  line-height: 0.90;
+}
+.kinetic-line {
+  overflow: hidden;
+  display: block;
+}
+.text-giant {
+  display: inline-block;
+  font-family: var(--font-hero);
+  font-size: clamp(48px, min(10vw, 13.5vh), 136px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.85);
+  transform: translateY(0);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.text-accent {
+  display: inline-block;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(44px, min(9.2vw, 12.5vh), 126px);
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  text-transform: lowercase;
+  text-shadow: 0 10px 35px rgba(0, 0, 0, 0.85);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.text-accent.text-red {
+  color: var(--red);
+  text-shadow: 0 0 35px var(--red-glow);
+}
+.story-slide:not(.active) .text-giant,
+.story-slide:not(.active) .text-accent {
+  transform: translateY(115%);
+}
+
+.titan-sub {
+  font-family: var(--font-body);
+  font-size: clamp(14px, min(1.5vw, 2.1vh), 18.5px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-sub);
+  max-width: 52ch;
+  margin: 0 auto clamp(10px, 1.8vh, 22px);
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+}
+
+.depth-meter {
+  position: absolute;
+  left: clamp(16px, 2.5vw, 36px);
+  bottom: clamp(16px, 2.5vh, 32px);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-hero);
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.depth-meter span.val {
+  font-size: clamp(22px, 2.2vw, 28px);
+  color: var(--red);
+  line-height: 1;
+}
+.depth-meter span.lbl {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: clamp(16px, 2.5vh, 32px);
+  right: clamp(16px, 2.5vw, 36px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  z-index: 10;
+}
+.scroll-pulse-dot {
+  width: 9px;
+  height: 9px;
+  background: var(--red);
+  border-radius: 50%;
+  box-shadow: 0 0 16px var(--red);
+  animation: pulse 1.8s infinite ease-in-out;
+}
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 24px var(--red); }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* ==========================================================================
+   CAPÍTULO 02: LAS DOS REALIDADES — PINNED SPLIT SCENE (EDITORIAL ESSAY)
+   ========================================================================== */
+.chapter-split-pinned {
+  position: relative;
+  min-height: 320vh;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.pinned-split-viewport {
+  position: sticky;
+  top: 68px;
+  height: calc(100vh - 68px);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.split-canvas-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(28px, 4.5vw, 72px);
+  align-items: center;
+  width: 100%;
+}
+
+.morph-image-frame {
+  position: relative;
+  height: clamp(260px, min(44vh, 42vw), 460px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-massive);
+  border: 1px solid var(--border-light);
+}
+.morph-image-frame img.img-state {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
+}
+.morph-image-frame .img-state { opacity: 0; transform: scale(1.08); }
+.morph-image-frame .img-state.visible { opacity: 1; transform: scale(1); }
+
+.morph-floating-rock {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 130px;
+  height: 130px;
+  z-index: 5;
+  clip-path: polygon(25% 5%, 85% 0%, 100% 45%, 80% 95%, 20% 90%, 0% 50%);
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.9));
+  opacity: 0.95;
+}
+
+.morph-statements-holder {
+  position: relative;
+  min-height: clamp(240px, 36vh, 340px);
+  display: flex;
+  align-items: center;
+}
+.morph-statement {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.morph-statement.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.morph-statement p {
+  font-size: clamp(14.5px, min(1.35vw, 1.9vh), 18px);
+  line-height: 1.55;
+  color: var(--text-sub);
+  margin-bottom: clamp(14px, 2vh, 24px);
+}
+
+/* ==========================================================================
+   CAPÍTULO 03: LOS 4 NÚMEROS DE IMPACTO — EFECTO ESCÁNER SÍSMICO
+   ========================================================================== */
+.chapter-stats-runway {
+  background: var(--bg-deep);
+  padding: clamp(70px, 9vh, 130px) 0;
+  position: relative;
+  border-top: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.stats-laser-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  box-shadow: 0 0 20px var(--red);
+  opacity: 0.8;
+  animation: laserScan 4s infinite linear;
+}
+@keyframes laserScan {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.stats-runway-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto clamp(36px, 5vh, 64px);
+}
+
+.editorial-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 2.5vw, 36px);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: clamp(28px, 4vh, 48px);
+}
+
+.editorial-stat-col {
+  position: relative;
+  padding: 0 clamp(8px, 1vw, 16px);
+  text-align: left;
+}
+.editorial-stat-col + .editorial-stat-col {
+  border-left: 1px solid var(--border-subtle);
+}
+
+.stat-giant-num {
+  font-family: var(--font-hero);
+  font-size: clamp(48px, min(6.5vw, 8.5vh), 92px);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  margin-bottom: clamp(10px, 1.5vh, 16px);
+  font-variant-numeric: tabular-nums;
+}
+.stat-giant-num span.red-plus {
+  color: var(--red);
+  text-shadow: 0 0 24px var(--red-glow);
+}
+.stat-editorial-label {
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   CAPÍTULO 04: EL PROTOCOLO DE BLINDAJE — HORIZONTAL PINNED SCROLL
+   ========================================================================== */
+.chapter-horizontal-pin {
+  position: relative;
+  min-height: 380vh;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.horizontal-viewport {
+  position: sticky;
+  top: 68px;
+  height: calc(100vh - 68px);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.horizontal-intro-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: clamp(14px, 2vh, 24px);
+  gap: 16px;
+}
+.scroll-instruction {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.horizontal-progress-line {
+  width: 100%;
+  height: 3px;
+  background: var(--border-subtle);
+  border-radius: 2px;
+  margin-bottom: clamp(18px, 2.6vh, 30px);
+  position: relative;
+}
+.horizontal-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--red), var(--gold-accent));
+  box-shadow: 0 0 16px var(--red-glow);
+  transition: width 0.1s linear;
+}
+
+.horizontal-cards-track {
+  display: flex;
+  gap: clamp(20px, 2.5vw, 32px);
+  width: max-content;
+  will-change: transform;
+  transition: transform 0.15s linear;
+}
+
+.dossier-slide-card {
+  width: clamp(280px, min(28vw, 380px), 380px);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 3.2vh, 36px) clamp(20px, 2vw, 32px);
+  box-shadow: var(--shadow-massive);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.dossier-slide-card.active-phase {
+  border-color: var(--red);
+  box-shadow: var(--shadow-massive), 0 0 30px var(--red-soft);
+  transform: translateY(-6px);
+}
+
+.phase-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: clamp(12px, 1.8vh, 18px);
+}
+.phase-number {
+  font-family: var(--font-hero);
+  font-size: clamp(38px, 4.5vw, 48px);
+  color: var(--red);
+  line-height: 1;
+  text-shadow: 0 0 20px var(--red-glow);
+}
+.phase-timecode {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.dossier-slide-card h3 {
+  font-family: var(--font-hero);
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  margin-bottom: clamp(8px, 1.2vh, 14px);
+  color: #FFFFFF;
+}
+.dossier-slide-card p {
+  font-size: clamp(13.5px, 1.15vw, 15px);
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 8px;
+  flex-grow: 1;
+}
+
+/* ==========================================================================
+   CAPÍTULO 05: EL CAMPO DE BATALLA — RADAR INTERACTIVO DE STAKEHOLDERS
+   ========================================================================= */
+.chapter-battlefield {
+  padding: clamp(70px, 9vh, 130px) 0;
+  background: var(--bg-deep);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.radar-interactive-stage {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-massive);
+  height: clamp(380px, min(50vh, 48vw), 540px);
+  margin-top: clamp(28px, 4vh, 48px);
+}
+.radar-interactive-stage img.radar-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.2) brightness(0.65);
+}
+
+.radar-node {
+  position: absolute;
+  z-index: 20;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.radar-node .node-pulse {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  animation: nodeBreath 2s infinite ease-in-out;
+}
+.pulse-blue { background: var(--blue-accent); box-shadow: 0 0 20px var(--blue-accent); }
+.pulse-red { background: var(--red); box-shadow: 0 0 20px var(--red); }
+.pulse-gold { background: var(--gold-accent); box-shadow: 0 0 20px var(--gold-accent); }
+
+@keyframes nodeBreath {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.35); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.radar-node .node-annotation {
+  position: absolute;
+  background: rgba(10, 12, 16, 0.94);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  width: clamp(210px, 20vw, 260px);
+  box-shadow: var(--shadow-massive);
+  backdrop-filter: blur(14px);
+  pointer-events: none;
+  opacity: 0.95;
+  transition: all 0.3s;
+}
+.annotation-coord {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.radar-node:hover .node-annotation {
+  opacity: 1;
+  border-color: var(--red);
+  transform: translateY(-4px);
+}
+.node-annotation h4 {
+  font-family: var(--font-hero);
+  font-size: clamp(18px, 1.8vw, 22px);
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+  color: #FFFFFF;
+}
+.node-annotation p {
+  font-size: clamp(12.5px, 1.1vw, 14px);
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.node-toronto { top: 18%; right: 4%; }
+.node-toronto .node-annotation { top: 26px; right: 0; border-top: 3px solid var(--blue-accent); }
+
+.node-comunidad { bottom: 18%; left: 4%; }
+.node-comunidad .node-annotation { bottom: 26px; left: 0; border-top: 3px solid var(--red); }
+
+.node-bogota { top: 44%; left: 45%; }
+.node-bogota .node-annotation { top: 26px; left: -90px; border-top: 3px solid var(--gold-accent); }
+
+/* ==========================================================================
+   CAPÍTULO 06: EXPEDIENTES DESCLASIFICADOS — STACKED CARDS SCENE
+   ========================================================================== */
+.chapter-stacked-cards {
+  background: var(--bg-surface);
+  padding: clamp(70px, 9vh, 130px) 0;
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.stacked-deck-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vh, 40px);
+  margin-top: clamp(32px, 4.5vh, 52px);
+  position: relative;
+}
+
+.stack-dossier-card {
+  position: sticky;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-massive);
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(24px, 3.5vw, 48px);
+  align-items: center;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  will-change: transform;
+}
+.stack-dossier-card:nth-child(1) { top: clamp(75px, 9.5vh, 90px); }
+.stack-dossier-card:nth-child(2) { top: clamp(92px, 12vh, 115px); }
+.stack-dossier-card:nth-child(3) { top: clamp(110px, 14.5vh, 140px); }
+
+.stack-card-content {
+  padding: clamp(24px, 3.5vw, 48px);
+}
+.stack-card-content h3 {
+  font-family: var(--font-hero);
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  margin-bottom: clamp(10px, 1.5vh, 16px);
+  color: #FFFFFF;
+}
+.stack-card-content h3 .text-accent {
+  font-size: 0.9em;
+}
+.stack-card-content p {
+  font-size: clamp(14px, 1.2vw, 16.5px);
+  line-height: 1.55;
+  color: var(--text-sub);
+  margin-bottom: clamp(18px, 2.4vh, 26px);
+}
+
+.btn-editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--red);
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+.btn-editorial-link:hover {
+  color: var(--red-hover);
+  transform: translateX(4px);
+}
+
+.stack-card-media {
+  height: 100%;
+  min-height: clamp(220px, 28vh, 340px);
+  position: relative;
+  overflow: hidden;
+}
+.stack-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.15) brightness(0.85);
+  transition: transform 0.6s ease;
+}
+.stack-dossier-card:hover .stack-card-media img {
+  transform: scale(1.06);
+}
+
+/* ==========================================================================
+   CAPÍTULO 07: TERMINAL DE MANDO — ACCIÓN Y CONTACTO DIRECTO
+   ========================================================================== */
+.chapter-callout-terminal {
+  background: #030406;
+  padding: clamp(70px, 9vh, 130px) 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-subtle);
+}
+.chapter-callout-terminal::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -15%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(255, 38, 0, 0.30) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.terminal-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(32px, 4.5vw, 68px);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.terminal-control-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 52px);
+  box-shadow: var(--shadow-massive);
+  backdrop-filter: blur(16px);
+}
+
+.terminal-email-link {
+  font-family: var(--font-hero);
+  font-size: clamp(22px, 3vw, 42px);
+  letter-spacing: 0.03em;
+  color: #FFFFFF;
+  display: block;
+  margin-bottom: 22px;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  transition: color 0.2s;
+}
+.terminal-email-link:hover { color: var(--red); }
+
+.copy-cluster {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.btn-copy-action {
+  background: #FFFFFF;
+  color: var(--bg-deep);
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-copy-action:hover {
+  background: var(--red);
+  color: #FFFFFF;
+  box-shadow: 0 0 20px var(--red-glow);
+}
+
+.terminal-linkedin-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 18px;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+.terminal-linkedin-link:hover {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  background: #020203;
+  color: var(--text-muted);
+  padding: 40px 0;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 14px;
+}
+.footer-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN & HEIGHT ADAPTABILITY
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .item-gauge, .item-seal {
+    display: none;
+  }
+  .hud-item span.hud-label {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .editorial-stats-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .editorial-stat-col:nth-child(2) ~ .editorial-stat-col {
+    margin-top: 24px;
+  }
+  .split-canvas-grid,
+  .terminal-split,
+  .stack-dossier-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .stack-dossier-card {
+    position: relative;
+    top: 0 !important;
+  }
+  .stack-card-media {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .scrolly-cinematic,
+  .chapter-split-pinned,
+  .chapter-horizontal-pin {
+    min-height: auto;
+  }
+  .scrolly-viewport,
+  .pinned-split-viewport,
+  .horizontal-viewport {
+    position: relative;
+    top: 0;
+    height: auto;
+    padding: 70px 0;
+  }
+  .story-slide {
+    position: relative;
+    inset: auto;
+    opacity: 1 !important;
+    transform: none !important;
+    margin-bottom: 40px;
+    display: block;
+    pointer-events: auto;
+  }
+  .story-slide .text-giant,
+  .story-slide .text-accent {
+    transform: none !important;
+  }
+  .horizontal-cards-track {
+    flex-direction: column;
+    width: 100%;
+    transform: none !important;
+  }
+  .dossier-slide-card {
+    width: 100%;
+  }
+  .header-navigation a.nav-item,
+  .header-skip-link {
+    display: none;
+  }
+  .editorial-stats-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .editorial-stat-col + .editorial-stat-col {
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+  .floating-cutout,
+  .depth-meter,
+  .scroll-hint,
+  .chapter-hud {
+    display: none;
+  }
+  .radar-interactive-stage {
+    height: auto;
+    overflow: visible;
+  }
+  .radar-interactive-stage img.radar-bg {
+    height: 240px;
+  }
+  .radar-node {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin-top: 14px;
+  }
+  .radar-node .node-pulse { display: none; }
+  .radar-node .node-annotation {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100%;
+    pointer-events: auto;
+    transform: none !important;
+  }
+}
+
+/* Pantallas de laptop de baja altura */
+@media (max-height: 720px) {
+  .text-giant {
+    font-size: clamp(38px, 8.5vh, 64px);
+  }
+  .text-accent {
+    font-size: clamp(34px, 8vh, 58px);
+  }
+  .titan-sub {
+    font-size: 13.5px;
+    margin-bottom: 12px;
+  }
+  .floating-cutout {
+    transform: scale(0.85);
+  }
+  .item-gauge, .item-seal {
+    display: none;
+  }
+  .morph-image-frame {
+    height: 40vh;
+  }
+  .dossier-slide-card {
+    padding: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVEGADOR DE CAPÍTULOS LATERAL FLOTANTE -->
+<nav class="chapter-hud" id="chapterHud" aria-label="Navegación de capítulos">
+  <div class="hud-item is-current" data-target="scrollyCinematic" title="01 / Descenso">
+    <span class="hud-label">01 / Descenso</span>
+    <span class="hud-dot"></span>
+  </div>
+  <div class="hud-item" data-target="capituloRealidades" title="02 / Dos Realidades">
+    <span class="hud-label">02 / Dos Realidades</span>
+    <span class="hud-dot"></span>
+  </div>
+  <div class="hud-item" data-target="capituloStats" title="03 / Escáner">
+    <span class="hud-label">03 / Escáner</span>
+    <span class="hud-dot"></span>
+  </div>
+  <div class="hud-item" data-target="capituloFases" title="04 / Fases">
+    <span class="hud-label">04 / Fases</span>
+    <span class="hud-dot"></span>
+  </div>
+  <div class="hud-item" data-target="capituloBatalla" title="05 / Radar">
+    <span class="hud-label">05 / Radar</span>
+    <span class="hud-dot"></span>
+  </div>
+  <div class="hud-item" data-target="capituloStack" title="06 / Expedientes">
+    <span class="hud-label">06 / Expedientes</span>
+    <span class="hud-dot"></span>
+  </div>
+  <div class="hud-item" data-target="contacto" title="07 / Comando">
+    <span class="hud-label">07 / Comando</span>
+    <span class="hud-dot"></span>
+  </div>
+</nav>
+
+<!-- HEADER OSCURO -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    
+    <a class="brand-logo" href="#inicio" aria-label="BEDROCK Communications">
+      <b>BEDROCK<sup>®</sup></b>
+      <span>COMMUNICATIONS</span>
+    </a>
+
+    <nav class="header-navigation" aria-label="Navegación principal">
+      <a class="nav-item" href="#capituloFases">Protocolo</a>
+      <a class="nav-item" href="#capituloBatalla">Minería</a>
+      <a class="nav-item" href="#capituloStack">Criterio</a>
+      <a class="nav-item" href="#contacto">Contacto</a>
+      
+      <a class="header-skip-link" href="#capituloFases">
+        <span>Saltar Intro →</span>
+      </a>
+
+      <a class="btn-primary-cta" href="#contacto">
+        Solicitar Diagnóstico
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- ====================================================================
+       CAPÍTULO 01: EL DESCENSO EN PROFUNDIDAD (HERO SCROLLYTELLING)
+       Inspirado en la dirección de arte de All Together Global Cleanup
+       ==================================================================== -->
+  <section class="scrolly-cinematic" id="scrollyCinematic">
+    <div class="scrolly-viewport">
+      
+      <div class="parallax-backdrop" id="parallaxBackdrop"></div>
+
+      <!-- PLANO POSTERIOR: OBJETOS FLOTANDO DETRÁS DE LA TIPOGRAFÍA -->
+      <div class="cutout-plane plane-back" aria-hidden="true">
+        <div class="floating-cutout cutout-core item-core" id="photoCore">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=85" 
+               alt="Testigo geológico de perforación" 
+               onerror="this.src='./images/core-sample.png'">
+        </div>
+        <div class="floating-cutout cutout-rock item-rock" id="photoRock">
+          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=85" 
+               alt="Roca madre y mineral oro/cobre" 
+               onerror="this.src='./images/mineral-strata.png'">
+        </div>
+        <div class="floating-cutout cutout-gauge item-gauge" id="photoInfra">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=85" 
+               alt="Manómetro de presión e instrumentación" 
+               onerror="this.src='./images/gauge-meter.png'">
+        </div>
+      </div>
+
+      <!-- TIPOGRAFÍA ESCÉNICA KINÉTICA (SIN CÁPSULAS) -->
+      <div class="scrolly-text-stage">
+        
+        <!-- ACTO 1 -->
+        <div class="story-slide active" id="act1">
+          <div class="kinetic-title-wrap">
+            <div class="kinetic-line">
+              <span class="text-giant">CADA PALABRA</span>
+            </div>
+            <div class="kinetic-line">
+              <span class="text-accent">cuenta.</span>
+            </div>
+          </div>
+          <p class="titan-sub">En minería y proyectos en territorio, un rumor local o una pregunta técnica mal explicada nunca se quedan bajo tierra.</p>
+        </div>
+
+        <!-- ACTO 2 -->
+        <div class="story-slide" id="act2">
+          <div class="kinetic-title-wrap">
+            <div class="kinetic-line">
+              <span class="text-giant">¿ES SOLO UN</span>
+            </div>
+            <div class="kinetic-line">
+              <span class="text-accent text-red">titular?</span>
+            </div>
+          </div>
+          <p class="titan-sub">«Un hito técnico mal comunicado jamás detendrá una inversión de cientos de millones»... ¿o sí?</p>
+        </div>
+
+        <!-- ACTO 3 -->
+        <div class="story-slide" id="act3">
+          <div class="kinetic-title-wrap">
+            <div class="kinetic-line">
+              <span class="text-giant">UN RUMOR</span>
+            </div>
+            <div class="kinetic-line">
+              <span class="text-accent">se propaga.</span>
+            </div>
+          </div>
+          <p class="titan-sub">En cuestión de días muta en asambleas comunitarias suspendidas, alertas del regulador y desconfianza en los fondos.</p>
+        </div>
+
+        <!-- ACTO 4 -->
+        <div class="story-slide" id="act4">
+          <div class="kinetic-title-wrap">
+            <div class="kinetic-line">
+              <span class="text-giant">Y PARALIZA</span>
+            </div>
+            <div class="kinetic-line">
+              <span class="text-accent text-red">la operación.</span>
+            </div>
+          </div>
+          <p class="titan-sub">Inversionistas en Toronto. Comunidades en territorio. Autoridades en Bogotá. Cada uno leyendo una historia distinta.</p>
+        </div>
+
+        <!-- ACTO 5 -->
+        <div class="story-slide" id="act5">
+          <div class="kinetic-title-wrap">
+            <div class="kinetic-line">
+              <span class="text-giant">¿CUÁNTO VALOR</span>
+            </div>
+            <div class="kinetic-line">
+              <span class="text-accent">se destruye?</span>
+            </div>
+          </div>
+          <p class="titan-sub">Semanas de perforación frenadas. Millones de dólares evaporados por carecer de una narrativa matriz impenetrable.</p>
+        </div>
+
+        <!-- ACTO 6 -->
+        <div class="story-slide" id="act6">
+          <div class="kinetic-title-wrap">
+            <div class="kinetic-line">
+              <span class="text-giant">REPUTACIÓN QUE</span>
+            </div>
+            <div class="kinetic-line">
+              <span class="text-accent text-red">se sostiene.</span>
+            </div>
+          </div>
+          <p class="titan-sub">Bajo escrutinio público, tensión territorial y presión de mercado. Así opera BEDROCK.</p>
+          <a class="btn-primary-cta" href="#contacto" style="font-size:15px; padding:13px 32px; margin-top:8px;">
+            Iniciar Diagnóstico de Reputación →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- PLANO FRONTAL: OBJETOS FLOTANDO EN PRIMER PLANO SOBRE LA TIPOGRAFÍA -->
+      <div class="cutout-plane plane-front" aria-hidden="true">
+        <div class="floating-cutout cutout-news item-news" id="photoNews">
+          <img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?auto=format&fit=crop&w=800&q=85" 
+               alt="Recorte rasgado de titular financiero" 
+               onerror="this.src='./images/news-clipping.png'">
+        </div>
+        <div class="floating-cutout cutout-mic item-mic" id="photoMic">
+          <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=85" 
+               alt="Micrófono de rueda de prensa" 
+               onerror="this.src='./images/press-mic.png'">
+        </div>
+        <div class="floating-cutout cutout-seal item-seal" id="photoInspect">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=85" 
+               alt="Sello oficial de auditoría" 
+               onerror="this.src='./images/official-seal.png'">
+        </div>
+      </div>
+
+      <div class="depth-meter" id="depthMeter">
+        <span class="val" id="depthVal">-100 M</span>
+        <span class="lbl">Nivel de Escrutinio</span>
+      </div>
+
+      <div class="scroll-hint" id="scrollHint">
+        <span>Desciende por el estrato</span>
+        <div class="scroll-pulse-dot"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 02: LAS DOS REALIDADES (PINNED SPLIT SCREEN SCROLLEABLE)
+       ==================================================================== -->
+  <section class="chapter-split-pinned" id="capituloRealidades">
+    <div class="pinned-split-viewport">
+      <div class="container split-canvas-grid">
+        
+        <!-- Ventana de Imagen Fotográfica a la Izquierda -->
+        <div class="morph-image-frame" id="morphImageBox">
+          <img class="img-state visible" id="morphImg1" 
+               src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=1200&q=85" 
+               alt="Operación minera en superficie">
+          <img class="img-state" id="morphImg2" 
+               src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=85" 
+               alt="Ensayo geológico en laboratorio">
+          <img class="img-state" id="morphImg3" 
+               src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85" 
+               alt="Comunidades y territorio">
+          
+          <div class="floating-cutout morph-floating-rock" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=85" alt="Fragmento mineral">
+          </div>
+        </div>
+
+        <!-- Textos Dinámicos a la Derecha que se suceden con el scroll -->
+        <div class="morph-statements-holder">
+          
+          <div class="morph-statement is-active" id="statement1">
+            <span class="editorial-folio">01 // NATURALEZA TÉCNICA</span>
+            <h2 class="editorial-title">
+              LA FÍSICA <br/>
+              <span class="text-accent">es predecible.</span>
+            </h2>
+            <p>Modelos de bloques, leyes de corte y balances metalúrgicos. La física responde a datos matemáticos e ingeniería rigurosa.</p>
+          </div>
+
+          <div class="morph-statement" id="statement2">
+            <span class="editorial-folio">02 // NATURALEZA HUMANA</span>
+            <h2 class="editorial-title">
+              LA PERCEPCIÓN <br/>
+              <span class="text-accent text-red">no lo es.</span>
+            </h2>
+            <p>Un rumor en territorio, una asamblea mal gestionada o un tecnicismo burocrático destruyen en semanas lo que la ingeniería tardó años en construir.</p>
+          </div>
+
+          <div class="morph-statement" id="statement3">
+            <span class="editorial-folio">03 // EL FACTOR BEDROCK</span>
+            <h2 class="editorial-title">
+              BLINDAJE <br/>
+              <span class="text-accent text-red">entre dos mundos.</span>
+            </h2>
+            <p>Traducimos la verdad del subsuelo para que el mercado confíe, el territorio acompañe y la operación continúe sin sobresaltos.</p>
+            <a class="btn-primary-cta" href="#capituloFases" style="align-self:flex-start;">
+              Ver Metodología de Blindaje →
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 03: EL EXPEDIENTE DE DATOS (HISTORIAL COMPROBABLE)
+       ==================================================================== -->
+  <section class="chapter-stats-runway" id="capituloStats">
+    <div class="stats-laser-line"></div>
+    <div class="container">
+      
+      <div class="stats-runway-header">
+        <span class="editorial-folio">03 // HISTORIAL COMPROBABLE</span>
+        <h2 class="editorial-title">
+          EXPERIENCIA EN <br/>
+          <span class="text-accent">cifras reales.</span>
+        </h2>
+        <p style="color:var(--text-sub); font-size:18px; max-width:680px; margin:16px auto 0;">
+          Cifras comprobables en cargos de liderazgo corporativo previos y actuales del fundador antes y durante BEDROCK.
+        </p>
+      </div>
+
+      <div class="editorial-stats-row">
+        
+        <div class="editorial-stat-col" id="runwayCard1">
+          <div class="stat-giant-num"><span class="red-plus">+</span><span class="live-counter" data-target="10">0</span></div>
+          <div class="stat-editorial-label">Años en comunicación estratégica, relaciones públicas y reputación corporativa.</div>
+        </div>
+
+        <div class="editorial-stat-col" id="runwayCard2">
+          <div class="stat-giant-num"><span class="live-counter" data-target="6">0</span></div>
+          <div class="stat-editorial-label">Departamentos con ruedas de prensa descentralizadas en The HALO Trust (+25 municipios).</div>
+        </div>
+
+        <div class="editorial-stat-col" id="runwayCard3">
+          <div class="stat-giant-num"><span class="red-plus">+</span><span class="live-counter" data-target="1200">0</span></div>
+          <div class="stat-editorial-label">Colegios públicos e infraestructuras entregadas y comunicadas a escala nacional desde el FFIE.</div>
+        </div>
+
+        <div class="editorial-stat-col" id="runwayCard4">
+          <div class="stat-giant-num"><span class="live-counter" data-target="15">0</span></div>
+          <div class="stat-editorial-label">Divulgaciones mayores a inversionistas en minería listada en bolsa (TSX: Outcrop y Copper Giant).</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 04: EL PROTOCOLO DE BLINDAJE (HORIZONTAL PINNED SCROLL)
+       ==================================================================== -->
+  <section class="chapter-horizontal-pin" id="capituloFases">
+    <div class="horizontal-viewport">
+      <div class="container">
+        
+        <div class="horizontal-intro-bar">
+          <div>
+            <span class="editorial-folio">04 // NAVEGACIÓN TÁCTICA</span>
+            <h2 class="editorial-title" style="margin-bottom:0;">
+              EL PROTOCOLO <br/>
+              <span class="text-accent text-red">de blindaje.</span>
+            </h2>
+          </div>
+          <span class="scroll-instruction">Desliza para avanzar las 4 fases →</span>
+        </div>
+
+        <!-- Línea de progreso roja -->
+        <div class="horizontal-progress-line">
+          <div class="horizontal-progress-fill" id="horizontalProgressFill"></div>
+        </div>
+
+        <!-- Pista de tarjetas horizontales -->
+        <div class="horizontal-cards-track" id="horizontalTrack">
+          
+          <div class="dossier-slide-card active-phase" id="phaseCard1">
+            <div class="phase-card-header">
+              <span class="phase-number">01</span>
+              <span class="phase-timecode">SEMANAS 01 — 02</span>
+            </div>
+            <h3>Diagnóstico en 14 Días</h3>
+            <p>Auditoría de medios, entrevistas a profundidad con la dirección técnica y mapeo de los actores críticos con capacidad de frenar o retrasar el proyecto.</p>
+          </div>
+
+          <div class="dossier-slide-card" id="phaseCard2">
+            <div class="phase-card-header">
+              <span class="phase-number">02</span>
+              <span class="phase-timecode">SEMANAS 03 — 05</span>
+            </div>
+            <h3>Narrativa Matriz</h3>
+            <p>Construcción de mensajes clave por público: lo que se le dice a la junta, a los fondos internacionales en bolsa y a los líderes comunitarios de la zona.</p>
+          </div>
+
+          <div class="dossier-slide-card" id="phaseCard3">
+            <div class="phase-card-header">
+              <span class="phase-number">03</span>
+              <span class="phase-timecode">SEMANAS 06 — 08</span>
+            </div>
+            <h3>Entrenamiento en Frío</h3>
+            <p>Simulacros de entrevistas y asambleas con el CEO y voceros técnicos, practicando respuestas inmediatas a las 20 preguntas más incómodas del sector.</p>
+          </div>
+
+          <div class="dossier-slide-card" id="phaseCard4">
+            <div class="phase-card-header">
+              <span class="phase-number">04</span>
+              <span class="phase-timecode">CONTINUO // MES 2+</span>
+            </div>
+            <h3>Blindaje Activo</h3>
+            <p>Acompañamiento mensual continuo: gestión de medios, divulgación de hitos técnicos y desactivación temprana de rumores antes de que escalen a la prensa.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 05: EL CAMPO DE BATALLA — RADAR INTERACTIVO DE STAKEHOLDERS
+       ==================================================================== -->
+  <section class="chapter-battlefield" id="capituloBatalla">
+    <div class="container">
+      
+      <div style="text-align:center; max-width:860px; margin:0 auto;">
+        <span class="editorial-folio">05 // MAPA TÁCTICO</span>
+        <h2 class="editorial-title">
+          MINERÍA: <br/>
+          <span class="text-accent text-red">3 fuerzas antagónicas.</span>
+        </h2>
+        <p style="color:var(--text-sub); font-size:18px; margin-top:12px;">
+          Un proyecto minero debe hablar simultáneamente con tres frentes. Pasa el cursor o pulsa en los nodos:
+        </p>
+      </div>
+
+      <div class="radar-interactive-stage">
+        <img class="radar-bg" 
+             src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=1600&q=85" 
+             alt="Topografía y territorio minero">
+        
+        <!-- Nodo 1: Toronto / Fondos Internacionales -->
+        <div class="radar-node node-toronto" id="nodeToronto">
+          <div class="node-pulse pulse-blue"></div>
+          <div class="node-annotation">
+            <span class="annotation-coord">COOR // TSX-43-101</span>
+            <h4>Toronto / Inversionistas</h4>
+            <p>Exigen reportes técnicos NI 43-101 rigurosos, reducción de riesgos y certeza financiera para fondear la exploración.</p>
+          </div>
+        </div>
+
+        <!-- Nodo 2: Territorio / Comunidades -->
+        <div class="radar-node node-comunidad" id="nodeComunidad">
+          <div class="node-pulse pulse-red"></div>
+          <div class="node-annotation">
+            <span class="annotation-coord">COOR // TERRITORIO LOCAL</span>
+            <h4>Territorio & Comunidades</h4>
+            <p>Preguntan por empleo local real, cuidado del agua, plazos y quién da la cara si ocurre un incidente.</p>
+          </div>
+        </div>
+
+        <!-- Nodo 3: Bogotá / Reguladores y Medios -->
+        <div class="radar-node node-bogota" id="nodeBogota">
+          <div class="node-pulse pulse-gold"></div>
+          <div class="node-annotation">
+            <span class="annotation-coord">COOR // REGULACIÓN & PRENSA</span>
+            <h4>Bogotá / Regulador & Medios</h4>
+            <p>Supervisan el cumplimiento de licencias ambientales (ANLA/ANM) y exigen transparencia sin evasivas técnicas.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 06: EXPEDIENTES DESCLASIFICADOS (STACKED CARDS SCENE)
+       ==================================================================== -->
+  <section class="chapter-stacked-cards" id="capituloStack">
+    <div class="container">
+      
+      <div style="text-align:center; max-width:860px; margin:0 auto;">
+        <span class="editorial-folio">06 // CRITERIO PUBLICADO</span>
+        <h2 class="editorial-title">
+          EXPEDIENTES <br/>
+          <span class="text-accent">de decisión crítica.</span>
+        </h2>
+      </div>
+
+      <div class="stacked-deck-container">
+        
+        <!-- Tarjeta 1 -->
+        <article class="stack-dossier-card" id="stackCard1">
+          <div class="stack-card-content">
+            <span class="editorial-folio" style="margin-bottom:12px;">EXPEDIENTE 01 // MERCADO DE CAPITALES</span>
+            <h3>Un resultado de perforación <span class="text-accent">no es una historia.</span></h3>
+            <p>Un buen ensayo mineral dice una cosa a los analistas de Toronto, otra a la comunidad ribereña y otra a las autoridades ambientales. Si se divulga solo para la bolsa, los otros frentes lo leen con desconfianza.</p>
+            <a class="btn-editorial-link" href="#contacto">
+              Solicitar Nota Completa →
+            </a>
+          </div>
+          <div class="stack-card-media">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=85" 
+                 alt="Muestra de testigo mineral de perforación">
+          </div>
+        </article>
+
+        <!-- Tarjeta 2 -->
+        <article class="stack-dossier-card" id="stackCard2">
+          <div class="stack-card-content">
+            <span class="editorial-folio" style="margin-bottom:12px;">EXPEDIENTE 02 // LICENCIA SOCIAL</span>
+            <h3>Lo que la comunidad pregunta <span class="text-accent">antes de que hables.</span></h3>
+            <p>Casi siempre se repiten las mismas dudas: qué pasará con el agua, cuántos empleos locales habrá, cuánto durará la obra y quién responderá si algo falla. Responder antes de que pregunten gana meses de tranquilidad.</p>
+            <a class="btn-editorial-link" href="#contacto">
+              Solicitar Nota Completa →
+            </a>
+          </div>
+          <div class="stack-card-media">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=85" 
+                 alt="Comunidad y territorio andino">
+          </div>
+        </article>
+
+        <!-- Tarjeta 3 -->
+        <article class="stack-dossier-card" id="stackCard3">
+          <div class="stack-card-content">
+            <span class="editorial-folio" style="margin-bottom:12px;">EXPEDIENTE 03 // SIMULACIÓN DE VOCERÍA</span>
+            <h3>Preparar al líder <span class="text-accent">para la pregunta incómoda.</span></h3>
+            <p>Todo directivo tiene tres o cuatro temas que preferiría evitar. Una hora de simulación de entrevista con un periodista incisivo prepara más que diez manuales teóricos de mensajes guardados en un cajón.</p>
+            <a class="btn-editorial-link" href="#contacto">
+              Solicitar Nota Completa →
+            </a>
+          </div>
+          <div class="stack-card-media">
+            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=85" 
+                 alt="Micrófono de rueda de prensa profesional">
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 07: TERMINAL DE MANDO Y ACCIÓN DIRECTA
+       ==================================================================== -->
+  <section class="chapter-callout-terminal" id="contacto">
+    <div class="container terminal-split">
+      
+      <div>
+        <span class="editorial-folio">07 // ACCIÓN INMEDIATA</span>
+        <h2 class="editorial-title">
+          ¿HABLAMOS DE <br/>
+          <span class="text-accent text-red">tu reputación?</span>
+        </h2>
+        <p style="color:var(--text-sub); font-size:19px; line-height:1.6; max-width:48ch; margin-top:16px;">
+          Cuéntanos la situación en dos líneas: qué reto enfrenta tu proyecto y qué plazo tienes. Respondemos en menos de un día hábil.
+        </p>
+      </div>
+
+      <div class="terminal-control-box">
+        <span class="editorial-folio" style="color:var(--text-muted); margin-bottom:12px;">CORREO DIRECTO DE DIRECCIÓN</span>
+        
+        <a class="terminal-email-link" id="contactEmail" href="mailto:nandar@bedrockcomms.com?subject=Diagn%C3%B3stico%20de%20Reputaci%C3%B3n%20-%20BEDROCK">
+          nandar@bedrockcomms.com
+        </a>
+
+        <div class="copy-cluster">
+          <button class="btn-copy-action" id="btnCopyEmail" type="button">Copiar Correo</button>
+          <a class="btn-primary-cta" href="mailto:nandar@bedrockcomms.com?subject=Diagn%C3%B3stico%20de%20Reputaci%C3%B3n%20-%20BEDROCK">
+            Escribir Mensaje →
+          </a>
+          <span id="copyFeedback" style="color:#00E575; font-size:14px; font-weight:800;" role="status" aria-live="polite"></span>
+        </div>
+
+        <a class="terminal-linkedin-link" href="https://www.linkedin.com/in/santiagonandar-comunicacioncorporativa/" target="_blank" rel="noopener noreferrer">
+          <span>Santiago Nándar en LinkedIn</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-wrap">
+    <div class="brand-logo">
+      <b>BEDROCK<sup>®</sup></b>
+      <span>COMMUNICATIONS</span>
+    </div>
+    <div>Building the foundation for reputation under scrutiny.</div>
+    <div>© 2026 BEDROCK Communications. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<!-- ====================================================================
+     MOTOR GLOBAL DE ANIMACIÓN CONTINUA, HORIZONTAL SCROLL & APILAMIENTO
+     ==================================================================== -->
+<script>
+(function() {
+  'use strict';
+
+  // 1. Header scroll listener
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // 2. Elementos del Capítulo 1 (Hero Scrollytelling)
+  var scrollyCinematic = document.getElementById('scrollyCinematic');
+  var backdrop = document.getElementById('parallaxBackdrop');
+  var depthVal = document.getElementById('depthVal');
+  var scrollHint = document.getElementById('scrollHint');
+
+  var slides = [
+    document.getElementById('act1'),
+    document.getElementById('act2'),
+    document.getElementById('act3'),
+    document.getElementById('act4'),
+    document.getElementById('act5'),
+    document.getElementById('act6')
+  ];
+  
+  var photos = [
+    document.getElementById('photoCore'),
+    document.getElementById('photoNews'),
+    document.getElementById('photoMic'),
+    document.getElementById('photoRock'),
+    document.getElementById('photoInfra'),
+    document.getElementById('photoInspect')
+  ];
+
+  var depths = ['-100 M', '-350 M', '-680 M', '-950 M', '-1.200 M', 'BEDROCK'];
+
+  // 3. Elementos del Capítulo 2 (Pinned Split Scrollytelling)
+  var capituloRealidades = document.getElementById('capituloRealidades');
+  var morphBadge = document.getElementById('morphBadge');
+  var morphImgs = [
+    document.getElementById('morphImg1'),
+    document.getElementById('morphImg2'),
+    document.getElementById('morphImg3')
+  ];
+  var statements = [
+    document.getElementById('statement1'),
+    document.getElementById('statement2'),
+    document.getElementById('statement3')
+  ];
+  var badgeLabels = ['ESTADO: SUPERFICIE', 'ESTADO: LABORATORIO / DATOS', 'ESTADO: TERRITORIO / ROCA'];
+
+  // 4. Elementos del Capítulo 4 (Horizontal Pinned Scroll)
+  var capituloFases = document.getElementById('capituloFases');
+  var horizontalTrack = document.getElementById('horizontalTrack');
+  var horizontalProgressFill = document.getElementById('horizontalProgressFill');
+  var phaseCards = [
+    document.getElementById('phaseCard1'),
+    document.getElementById('phaseCard2'),
+    document.getElementById('phaseCard3'),
+    document.getElementById('phaseCard4')
+  ];
+
+  // 5. Elementos del Capítulo 6 (Stacked Cards)
+  var stackCards = [
+    document.getElementById('stackCard1'),
+    document.getElementById('stackCard2'),
+    document.getElementById('stackCard3')
+  ];
+
+  // 6. HUD Lateral
+  var hudItems = document.querySelectorAll('.hud-item');
+  var hudSections = [
+    document.getElementById('scrollyCinematic'),
+    document.getElementById('capituloRealidades'),
+    document.getElementById('capituloStats'),
+    document.getElementById('capituloFases'),
+    document.getElementById('capituloBatalla'),
+    document.getElementById('capituloStack'),
+    document.getElementById('contacto')
+  ];
+
+  // Bucle Maestro de Animación Continua
+  function masterScrollEngine() {
+    var vh = window.innerHeight;
+
+    // --- CAPÍTULO 1: HERO SCROLLYTELLING ---
+    if (scrollyCinematic) {
+      var hRect = scrollyCinematic.getBoundingClientRect();
+      var hTotal = scrollyCinematic.offsetHeight - vh;
+      var hProg = Math.max(0, Math.min(1, -hRect.top / (hTotal || 1)));
+
+      if (backdrop) {
+        backdrop.style.transform = 'scale(' + (1.05 + hProg * 0.22) + ') translateY(' + (hProg * 100) + 'px)';
+      }
+
+      var step = Math.min(5, Math.floor(hProg * 6));
+      slides.forEach(function(s, idx) {
+        if (s) s.classList.toggle('active', idx === step);
+      });
+
+      if (depthVal) depthVal.textContent = depths[step];
+
+      // Animación continua y parallax tridimensional de recortes fotográficos
+      if (photos[0]) {
+        photos[0].classList.toggle('active', hProg > 0.08);
+        photos[0].style.transform = 'translateY(' + ((hProg - 0.20) * -110) + 'px) rotate(' + (-4 + hProg * 14) + 'deg)';
+      }
+      if (photos[1]) {
+        photos[1].classList.toggle('active', hProg > 0.22);
+        photos[1].style.transform = 'translateY(' + ((hProg - 0.35) * -130) + 'px) rotate(' + (4 - hProg * 12) + 'deg)';
+      }
+      if (photos[2]) {
+        photos[2].classList.toggle('active', hProg > 0.38);
+        photos[2].style.transform = 'translateY(' + ((hProg - 0.50) * -120) + 'px) rotate(' + (6 + hProg * 10) + 'deg)';
+      }
+      if (photos[3]) {
+        photos[3].classList.toggle('active', hProg > 0.54);
+        photos[3].style.transform = 'translateY(' + ((hProg - 0.65) * -150) + 'px) rotate(' + (-4 - hProg * 15) + 'deg)';
+      }
+      if (photos[4]) {
+        photos[4].classList.toggle('active', hProg > 0.68);
+        photos[4].style.transform = 'translateY(' + ((hProg - 0.75) * -100) + 'px) rotate(' + (-8 + hProg * 16) + 'deg)';
+      }
+      if (photos[5]) {
+        photos[5].classList.toggle('active', hProg > 0.82);
+        photos[5].style.transform = 'translateY(' + ((hProg - 0.85) * -110) + 'px) rotate(' + (8 - hProg * 16) + 'deg)';
+      }
+
+      if (scrollHint) scrollHint.style.opacity = hProg > 0.10 ? '0' : '1';
+    }
+
+    // --- CAPÍTULO 2: PINNED SPLIT SCROLLEABLE ---
+    if (capituloRealidades) {
+      var rRect = capituloRealidades.getBoundingClientRect();
+      var rTotal = capituloRealidades.offsetHeight - vh;
+      if (rRect.top <= 0 && rRect.bottom >= 0) {
+        var rProg = Math.max(0, Math.min(1, -rRect.top / (rTotal || 1)));
+        var rStep = Math.min(2, Math.floor(rProg * 3));
+
+        statements.forEach(function(st, idx) {
+          if (st) st.classList.toggle('is-active', idx === rStep);
+        });
+
+        morphImgs.forEach(function(img, idx) {
+          if (img) img.classList.toggle('visible', idx === rStep);
+        });
+
+        if (morphBadge) morphBadge.textContent = badgeLabels[rStep];
+      }
+    }
+
+    // --- CAPÍTULO 4: HORIZONTAL PINNED SCROLL DE FASES ---
+    if (capituloFases && horizontalTrack && horizontalProgressFill && window.innerWidth > 768) {
+      var fRect = capituloFases.getBoundingClientRect();
+      var fTotal = capituloFases.offsetHeight - vh;
+      if (fRect.top <= 0 && fRect.bottom >= 0) {
+        var fProg = Math.max(0, Math.min(1, -fRect.top / (fTotal || 1)));
+        
+        // Desplazamiento horizontal exacto basado en el ancho del contenedor padre
+        var containerWidth = horizontalTrack.parentElement ? horizontalTrack.parentElement.clientWidth : window.innerWidth;
+        var maxTrackScroll = Math.max(0, horizontalTrack.scrollWidth - containerWidth);
+        var translateX = fProg * maxTrackScroll;
+        horizontalTrack.style.transform = 'translateX(' + (-translateX) + 'px)';
+        horizontalProgressFill.style.width = (fProg * 100) + '%';
+
+        // Iluminación activa de cada fase
+        phaseCards.forEach(function(card, idx) {
+          if (card) {
+            var activeThreshold = (idx + 0.15) / 4;
+            card.classList.toggle('active-phase', fProg >= activeThreshold);
+          }
+        });
+      }
+    }
+
+    // --- CAPÍTULO 6: STACKED CARDS DEPTH ON SCROLL ---
+    if (stackCards.length === 3 && window.innerWidth > 1024) {
+      stackCards.forEach(function(card, idx) {
+        var cRect = card.getBoundingClientRect();
+        var targetTop = 75 + (idx * 20);
+        if (cRect.top <= targetTop + 30) {
+          var diff = Math.max(0, (targetTop + 30 - cRect.top) / 250);
+          var scale = Math.max(0.93, 1 - (diff * 0.04));
+          var filterVal = Math.min(3, diff * 4);
+          card.style.transform = 'scale(' + scale + ')';
+          card.style.filter = 'brightness(' + (1 - diff * 0.15) + ') blur(' + (filterVal * 0.3) + 'px)';
+        } else {
+          card.style.transform = 'scale(1)';
+          card.style.filter = 'none';
+        }
+      });
+    }
+
+    // --- HUD LATERAL: ILUMINAR CAPÍTULO ACTUAL ---
+    hudSections.forEach(function(sec, idx) {
+      if (sec && hudItems[idx]) {
+        var sRect = sec.getBoundingClientRect();
+        if (sRect.top <= vh * 0.45 && sRect.bottom >= vh * 0.2) {
+          hudItems.forEach(function(it) { it.classList.remove('is-current'); });
+          hudItems[idx].classList.add('is-current');
+        }
+      }
+    });
+  }
+
+  window.addEventListener('scroll', masterScrollEngine, { passive: true });
+  masterScrollEngine();
+
+  // Click en el HUD lateral
+  hudItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      var targetId = this.getAttribute('data-target');
+      var targetElem = document.getElementById(targetId);
+      if (targetElem) {
+        targetElem.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Contadores Dinámicos en la Sección de Estadísticas
+  var counters = document.querySelectorAll('.live-counter');
+  var countersTriggered = false;
+
+  function countUpNumbers() {
+    counters.forEach(function(counter) {
+      var target = parseInt(counter.getAttribute('data-target'), 10);
+      var count = 0;
+      var duration = 1600;
+      var stepTime = Math.max(16, duration / target);
+      var increment = Math.ceil(target / (duration / stepTime));
+
+      var timer = setInterval(function() {
+        count += increment;
+        if (count >= target) {
+          counter.textContent = target.toLocaleString('es-CO');
+          clearInterval(timer);
+        } else {
+          counter.textContent = count.toLocaleString('es-CO');
+        }
+      }, stepTime);
+    });
+  }
+
+  var statsSection = document.getElementById('capituloStats');
+  if (statsSection && 'IntersectionObserver' in window) {
+    var statsObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !countersTriggered) {
+          countersTriggered = true;
+          countUpNumbers();
+        }
+      });
+    }, { threshold: 0.25 });
+
+    statsObserver.observe(statsSection);
+  }
+
+  // Referencia de correo en terminal de contacto
+  var contactEmail = document.getElementById('contactEmail');
+
+  // Copiado de Correo con feedback
+  var btnCopy = document.getElementById('btnCopyEmail');
+  var feedback = document.getElementById('copyFeedback');
+
+  if (btnCopy && contactEmail && feedback) {
+    btnCopy.addEventListener('click', function() {
+      var txt = contactEmail.textContent.trim();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(txt).then(function() {
+          feedback.textContent = '✓ Copiado';
+          setTimeout(function() { feedback.textContent = ''; }, 2500);
+        });
+      }
+    });
+  }
+
+})();
+</script>
+
+</body>
+</html>

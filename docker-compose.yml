@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: i2services-web:latest
+    container_name: i2services-web
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production

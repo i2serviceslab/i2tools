@@ -1,0 +1,22 @@
+# Version control & OS
+.git
+.gitignore
+.DS_Store
+Thumbs.db
+
+# Dependencies & Build artifacts
+node_modules
+dist
+npm-debug.log*
+
+# Environment & Agent temporary files
+.env*
+.agents
+.playwright
+.taste-skill
+skills-lock.json
+
+# Unused drafts / legacy templates
+bedrock-website.html
+index.kairos.html
+scripts/
