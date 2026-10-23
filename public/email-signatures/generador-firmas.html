@@ -437,22 +437,35 @@
 
         <!-- OPCIONES DE FONDO -->
         <div class="form-group" style="margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08);">
-          <label style="color: var(--cyan); font-weight: 700; margin-bottom: 8px; display: block;">Estilo de Fondo en Correo:</label>
-          <div style="display: flex; gap: 16px; margin-bottom: 12px;">
-            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
-              <input type="radio" name="bgStyleOption" value="gif" checked onchange="updateSignature()">
-              <span>Olas Animadas (GIF)</span>
+          <label style="color: var(--cyan); font-weight: 700; margin-bottom: 8px; display: block;">Modo de Animación / Fondo:</label>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;">
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
+              <input type="radio" name="bgStyleOption" value="banner" checked onchange="updateSignature()" style="margin-top: 3px;">
+              <div>
+                <strong style="color: #5BE2F8;">Franja Ondas Animadas (100% Compatible con Gmail, Outlook y Celular)</strong>
+                <p style="font-size: 11px; color: #94A3B8; margin: 2px 0 0 0;">Inserta la onda de partículas en la base de la tarjeta mediante &lt;img&gt;. En Gmail y Outlook NUNCA se bloquea y se reproduce de inmediato.</p>
+              </div>
             </label>
-            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
-              <input type="radio" name="bgStyleOption" value="solid" onchange="updateSignature()">
-              <span>Azul Marino Sólido (#08172E)</span>
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
+              <input type="radio" name="bgStyleOption" value="gif" onchange="updateSignature()" style="margin-top: 3px;">
+              <div>
+                <strong>Fondo Completo Animado (Para Outlook de escritorio / Apple Mail / M365)</strong>
+                <p style="font-size: 11px; color: #94A3B8; margin: 2px 0 0 0;">Cubre toda la tarjeta con el GIF. (Nota: Gmail web suele filtrar fondos CSS detrás de texto y mostrará azul marino plano).</p>
+              </div>
+            </label>
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
+              <input type="radio" name="bgStyleOption" value="solid" onchange="updateSignature()" style="margin-top: 3px;">
+              <div>
+                <strong>Azul Marino Institucional Sólido (#08172E)</strong>
+                <p style="font-size: 11px; color: #94A3B8; margin: 2px 0 0 0;">Diseño corporativo sobrio y minimalista sin movimiento.</p>
+              </div>
             </label>
           </div>
           <div id="gifUrlContainer" class="form-group" style="margin-bottom: 0;">
-            <label style="font-size: 11px; color: #94A3B8;">URL pública del GIF en el servidor:</label>
-            <input type="text" id="inputGifUrl" value="https://i2services.co/email-signatures/particle-wave-bg.gif" oninput="updateSignature()" style="font-size: 12px;">
+            <label style="font-size: 11px; color: #94A3B8;">URL pública de los recursos en CDN:</label>
+            <input type="text" id="inputGifUrl" value="https://cdn.jsdelivr.net/gh/i2serviceslab/i2tools@main/public/email-signatures/particle-wave-bg.gif" oninput="updateSignature()" style="font-size: 12px;">
             <p style="font-size: 11px; color: #64748B; margin-top: 4px; line-height: 1.4;">
-              * Aloja el archivo <code>particle-wave-bg.gif</code> en tu servidor HTTPS para que Outlook y Gmail lo carguen sin inflar el peso de tus correos.
+              * Alojado en CDN global de alta disponibilidad para que Gmail y Outlook lo descarguen al instante.
             </p>
           </div>
         </div>
@@ -470,6 +483,9 @@
           <div class="card-preview-wrapper" id="cardPreviewWrapper">
             <div id="lottieParticleBg" class="lottie-particle-layer"></div>
             <div class="card-content-layer" id="signatureContentLayer"></div>
+            <div id="bannerPreviewLayer" style="display: block; line-height: 0; font-size: 0; border-top: 1px solid rgba(113, 140, 193, 0.2); background-color: #08172E;">
+              <img src="particle-wave-banner.gif" width="580" height="34" alt="i2 Services Waves" style="display: block; width: 100%; max-width: 580px; height: 34px; border: 0;" />
+            </div>
           </div>
 
           <table cellpadding="0" cellspacing="0" border="0" style="max-width: 580px; width: 100%; margin-top: 8px;">
@@ -619,30 +635,43 @@
         `;
       }
 
-      const bgOption = document.querySelector('input[name="bgStyleOption"]:checked')?.value || 'gif';
-      const gifUrl = document.getElementById('inputGifUrl')?.value || 'https://i2services.co/email-signatures/particle-wave-bg.gif';
-      const isGif = isForEmail && bgOption === 'gif';
+      const bgOption = document.querySelector('input[name="bgStyleOption"]:checked')?.value || 'banner';
+      const cdnBase = 'https://cdn.jsdelivr.net/gh/i2serviceslab/i2tools@main/public/email-signatures';
+      const gifUrl = document.getElementById('inputGifUrl')?.value || `${cdnBase}/particle-wave-bg.gif`;
+      const bannerUrl = `${cdnBase}/particle-wave-banner.gif`;
+
+      const isBanner = bgOption === 'banner';
+      const isGifBg = isForEmail && bgOption === 'gif';
 
       const bgStyle = isForEmail 
-        ? (isGif 
+        ? (isGifBg 
             ? `background-color: #08172E; background-image: url('${gifUrl}'); background-position: center center; background-repeat: no-repeat; background-size: cover; border: 1px solid rgba(113, 140, 193, 0.22); border-radius: 12px;`
             : `background-color: #08172E; border: 1px solid rgba(113, 140, 193, 0.22); border-radius: 12px;`)
         : 'background-color: transparent;';
-      const bgAttr = isForEmail ? `bgcolor="#08172E"${isGif ? ` background="${gifUrl}"` : ''}` : '';
-      const tdBg = isGif ? `background="${gifUrl}" style="padding: 22px 26px; background-image: url('${gifUrl}'); background-position: center center; background-repeat: no-repeat; background-size: cover;"` : 'style="padding: 22px 26px;"';
+      const bgAttr = isForEmail ? `bgcolor="#08172E"${isGifBg ? ` background="${gifUrl}"` : ''}` : '';
+      const tdBg = isGifBg ? `background="${gifUrl}" style="padding: 22px 26px; background-image: url('${gifUrl}'); background-position: center center; background-repeat: no-repeat; background-size: cover;"` : 'style="padding: 22px 26px;"';
 
-      const vmlStart = isGif ? `
+      const vmlStart = isGifBg ? `
       <!--[if gte mso 9]>
-      <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000; height:180px;">
+      <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:580px; height:180px;">
         <v:fill type="frame" src="${gifUrl}" color="#08172E" />
         <v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
       <![endif]-->` : '';
 
-      const vmlEnd = isGif ? `
+      const vmlEnd = isGifBg ? `
       <!--[if gte mso 9]>
         </v:textbox>
       </v:rect>
       <![endif]-->` : '';
+
+      const bannerRow = (isForEmail && isBanner) ? `
+  <tr>
+    <td style="padding: 0; line-height: 0; font-size: 0; border-top: 1px solid rgba(113, 140, 193, 0.2); overflow: hidden; border-bottom-left-radius: 11px; border-bottom-right-radius: 11px; background-color: #08172E;">
+      <a href="https://i2services.co" target="_blank" style="text-decoration: none; display: block; line-height: 0;">
+        <img src="${bannerUrl}" width="580" height="34" alt="i2 Services Waves" style="display: block; width: 100%; max-width: 580px; height: 34px; border: 0; outline: none; text-decoration: none; border-bottom-left-radius: 11px; border-bottom-right-radius: 11px;" />
+      </a>
+    </td>
+  </tr>` : '';
 
       return `
 <table cellpadding="0" cellspacing="0" border="0" ${bgAttr} style="${bgStyle} font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif; font-size: 13px; line-height: 1.4; color: #FFFFFF; max-width: 580px; width: 100%; border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
@@ -700,6 +729,7 @@
       ${vmlEnd}
     </td>
   </tr>
+  ${bannerRow}
 </table>`;
     }
 
@@ -709,15 +739,19 @@
         contentLayer.innerHTML = buildSignatureTableHtml(false);
       }
       
-      const bgOption = document.querySelector('input[name="bgStyleOption"]:checked')?.value || 'gif';
+      const bgOption = document.querySelector('input[name="bgStyleOption"]:checked')?.value || 'banner';
       const gifContainer = document.getElementById('gifUrlContainer');
       const lottieBg = document.getElementById('lottieParticleBg');
+      const bannerPreview = document.getElementById('bannerPreviewLayer');
 
       if (gifContainer) {
-        gifContainer.style.display = bgOption === 'gif' ? 'block' : 'none';
+        gifContainer.style.display = (bgOption === 'gif' || bgOption === 'banner') ? 'block' : 'none';
       }
       if (lottieBg) {
-        lottieBg.style.opacity = bgOption === 'gif' ? '0.17' : '0';
+        lottieBg.style.opacity = bgOption === 'gif' ? '0.22' : '0';
+      }
+      if (bannerPreview) {
+        bannerPreview.style.display = bgOption === 'banner' ? 'block' : 'none';
       }
 
       initLottieBg();

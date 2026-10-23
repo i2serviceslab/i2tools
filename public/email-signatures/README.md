@@ -15,7 +15,8 @@ Paquete oficial de firmas de correo corporativo para **i2 Services S.A.S.**, dis
 | :--- | :--- | :--- |
 | **`tutorial-firmas-outlook-i2services.pdf`** | **Manual PDF (5 págs.)** | Guía técnica oficial descargable con arquitectura de Microsoft 365, tabla de variables, compatibilidad con motor Word y logotipo blanco. |
 | **`generador-firmas.html`** | **Herramienta Web Interactiva** | Aplicación web para abrir en cualquier navegador. Permite ingresar datos, elegir fondo (GIF animado o sólido) y copiarla con 1 clic para Outlook. |
-| **`particle-wave-bg.gif`** | **Fondo Animado GIF** | Ola de partículas sutil en bucle continuo (`580x180px`, optimizado a ~165 KB) para clientes que soportan animación. |
+| **`particle-wave-bg.gif`** | **Fondo Animado GIF (580x180)** | Fondo de partículas cyan en bucle continuo para clientes compatibles con fondos HTML. |
+| **`particle-wave-banner.gif`** | **Banner Animado GIF (580x36)** | Franja animada de partículas en etiqueta `<img>`, 100% visible en Gmail Web, Outlook y dispositivos móviles. |
 | **`firma-m365-dinamica.html`** | **Código Centralizado M365** | Código HTML con variables Exchange (`%%DisplayName%%`, etc.) y respaldo VML para Outlook de escritorio. |
 | **`firma-ejemplo-estatica.html`** | **Plantilla Estática** | Ejemplo listo con datos genéricos (John Doe - Director de Operaciones) y fondo animado. |
 
