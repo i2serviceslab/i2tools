@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Language } from '../types';
 import { ArrowRight, Menu, X } from 'lucide-react';
+import logoOfficial from '../assets/logo.png';
 
 interface NavbarProps {
   lang: Language;
@@ -48,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
         {/* Brand Logo with Tagline */}
         <a href="#" className="flex items-center group shrink-0 py-1">
           <img
-            src="/i2-services-logo.png"
+            src={logoOfficial}
             alt="i2 Services S.A.S. - You Ground, our Experience"
             className="h-9 sm:h-10 w-auto opacity-95 group-hover:opacity-100 transition-opacity drop-shadow-sm"
           />

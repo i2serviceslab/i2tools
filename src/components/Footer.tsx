@@ -1,6 +1,7 @@
 import React from 'react';
 import { Language } from '../types';
 import { ArrowUp, MessageSquare } from 'lucide-react';
+import logoOfficial from '../assets/logo.png';
 
 interface FooterProps {
   lang: Language;
@@ -29,7 +30,7 @@ export const Footer: React.FC<FooterProps> = ({ lang, onLanguageChange }) => {
           <div className="lg:col-span-5 space-y-5">
             <div className="flex flex-col items-start">
               <img
-                src="/i2-services-logo.png"
+                src={logoOfficial}
                 alt="i2 Services S.A.S. - You Ground, our Experience"
                 className="h-10 sm:h-11 w-auto opacity-95 hover:opacity-100 transition-opacity"
               />
