@@ -10,404 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Vendor libraries for offline / online export -->
-  <script src="/vacantes/vendor/html2canvas.min.js">
-    // ============================================================
-    // ONBOARDING TUTORIAL & GUIDED TOUR JAVASCRIPT
-    // ============================================================
-    const TOUR_STEPS = [
-      {
-        target: null, // Center modal
-        badge: "Bienvenida",
-        icon: "👋",
-        title: "¡Bienvenido/a al Creador de Vacantes!",
-        content: `
-          <p style="margin-bottom:12px; line-height:1.5;">Esta plataforma fue creada para que <b>cualquier persona</b> pueda diseñar afiches de ofertas de empleo con la imagen corporativa oficial de <b>i2 Services</b> en menos de 2 minutos.</p>
-          <div style="background:rgba(1,187,220,0.08); border:1px solid rgba(1,187,220,0.25); border-radius:10px; padding:12px 14px; margin-bottom:12px;">
-            <div style="font-weight:700; color:#38BDF8; margin-bottom:4px; font-size:12px;">🎯 Lo que puedes hacer aquí:</div>
-            <div style="font-size:12px; color:#CBD5E1; line-height:1.4;">Crearás afiches modernos listos para compartir por WhatsApp, publicar en LinkedIn o imprimir, sin necesidad de saber diseño gráfico ni programas complicados.</div>
-          </div>
-          <p style="font-size:12px; color:#94A3B8;">¿Hacemos un recorrido guiado rápido de 1 minuto para ver cómo funciona paso a paso?</p>
-        `,
-        btnNext: "Iniciar recorrido guiado →",
-        placement: "center"
-      },
-      {
-        target: "#stepPresets",
-        badge: "Paso 1 de 8",
-        icon: "⚡",
-        title: "Plantillas Rápidas (1 Clic)",
-        content: `
-          <p style="margin-bottom:10px; line-height:1.5;"><b>¡No tienes que empezar en blanco!</b></p>
-          <p style="margin-bottom:10px; line-height:1.5;">Haz clic en cualquiera de estos 4 botones de ejemplo (<i>Social Media, Diseñador/a, Geólogo/a o Abogado/a</i>). Al presionar uno, el formulario se llenará automáticamente con textos y fotos profesionales que luego puedes editar.</p>
-          <div style="background:rgba(255,255,255,0.05); border-left:3px solid #01BBDC; padding:8px 12px; border-radius:4px; font-size:12px; color:#E2E8F0;">
-            💡 <b>Tip:</b> Prueba dar clic en un ejemplo ahora mismo para ver cómo cambia la vista previa.
-          </div>
-        `,
-        placement: "right"
-      },
-      {
-        target: "#stepJobTitle",
-        badge: "Paso 2 de 8",
-        icon: "📝",
-        title: "Nombre del Cargo e Insignia",
-        content: `
-          <p style="margin-bottom:10px; line-height:1.5;">Aquí personalizas los datos principales del rol:</p>
-          <ul style="padding-left:18px; margin-bottom:10px; font-size:12px; color:#CBD5E1; line-height:1.5;">
-            <li style="margin-bottom:4px;"><b>Insignia Superior:</b> Por defecto dice <i>"Vacante"</i>, pero puedes cambiarlo a <i>"Convocatoria"</i>, <i>"Pasantía"</i> o <i>"Nueva Posición"</i>.</li>
-            <li style="margin-bottom:4px;"><b>Título de la Vacante:</b> El nombre del puesto en mayúsculas (ej: <i>ANALISTA CONTABLE</i>, <i>INGENIERO DE MINAS</i>).</li>
-            <li><b>Subtítulo:</b> Especialidad o área de enfoque (ej: <i>Perfil Senior · Medellín</i>).</li>
-          </ul>
-        `,
-        placement: "right"
-      },
-      {
-        target: "#stepHeaderPhoto",
-        badge: "Paso 3 de 8",
-        icon: "📸",
-        title: "Fotografía de Cabecera",
-        content: `
-          <p style="margin-bottom:10px; line-height:1.5;">Elige la foto que mejor represente la vacante haciendo clic en una de las opciones oficiales:</p>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px; margin-bottom:10px; color:#CBD5E1;">
-            <div style="background:rgba(255,255,255,0.04); padding:6px 8px; border-radius:6px;">🎨 <b>Estudio:</b> Creativos / Media</div>
-            <div style="background:rgba(255,255,255,0.04); padding:6px 8px; border-radius:6px;">💻 <b>Tecnología:</b> TI / Datos</div>
-            <div style="background:rgba(255,255,255,0.04); padding:6px 8px; border-radius:6px;">🏢 <b>Oficina:</b> Legal / Admin</div>
-            <div style="background:rgba(255,255,255,0.04); padding:6px 8px; border-radius:6px;">⛰️ <b>Campo:</b> Geología / Mina</div>
-          </div>
-          <p style="font-size:12px; color:#94A3B8; line-height:1.4;">También puedes subir una foto propia o presionar <b>"Quitar / Dejar Sin Fotografía"</b> para un fondo corporativo minimalista azul.</p>
-        `,
-        placement: "right"
-      },
-      {
-        target: "#stepObjective",
-        badge: "Paso 4 de 8",
-        icon: "🎯",
-        title: "Misión y Responsabilidades",
-        content: `
-          <p style="margin-bottom:10px; line-height:1.5;">En esta sección defines el objetivo general del cargo y las funciones que realizará el colaborador.</p>
-          <div style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:10px 12px; margin-bottom:8px;">
-            <div style="font-weight:700; color:#34D399; font-size:12px; margin-bottom:4px;">✨ La magia de las viñetas automáticas:</div>
-            <div style="font-size:12px; color:#E2E8F0; line-height:1.4;">No necesitas poner guiones ni números. Simplemente escribe una función y presiona la tecla <b>Enter</b>. Cada salto de línea se convertirá al instante en una viñeta gráfica en el afiche.</div>
-          </div>
-        `,
-        placement: "right"
-      },
-      {
-        target: "#stepRequirements",
-        badge: "Paso 5 de 8",
-        icon: "📋",
-        title: "Perfil y Requisitos Buscados",
-        content: `
-          <p style="margin-bottom:10px; line-height:1.5;">Especifica aquí lo que debe tener el candidato ideal:</p>
-          <ul style="padding-left:18px; margin-bottom:10px; font-size:12px; color:#CBD5E1; line-height:1.5;">
-            <li style="margin-bottom:3px;">Años de experiencia laboral.</li>
-            <li style="margin-bottom:3px;">Título universitario o carrera técnica requerida.</li>
-            <li style="margin-bottom:3px;">Herramientas o software que debe dominar.</li>
-            <li>Nivel de inglés o idiomas adicionales.</li>
-          </ul>
-          <p style="font-size:12px; color:#94A3B8;">Al igual que en las responsabilidades, cada <b>Enter</b> crea una nueva viñeta.</p>
-        `,
-        placement: "right"
-      },
-      {
-        target: "#stepContact",
-        badge: "Paso 6 de 8",
-        icon: "📅",
-        title: "Contacto, Ciudad y Fechas",
-        content: `
-          <p style="margin-bottom:10px; line-height:1.5;">Estos datos se mostrarán en la barra informativa inferior del afiche:</p>
-          <ul style="padding-left:18px; margin-bottom:10px; font-size:12px; color:#CBD5E1; line-height:1.5;">
-            <li style="margin-bottom:4px;"><b>Ubicación y Modalidad:</b> Ej. <i>Medellín, Colombia · Presencial</i>.</li>
-            <li style="margin-bottom:4px;"><b>Fecha Límite:</b> Hasta qué fecha se reciben postulaciones.</li>
-            <li><b>Correo Electrónico:</b> La dirección oficial a donde los aspirantes deben enviar su hoja de vida (ej: <i>yurany.sanchez@i2services.co</i>).</li>
-          </ul>
-        `,
-        placement: "right"
-      },
-      {
-        target: "#stepPreview",
-        badge: "Paso 7 de 8",
-        icon: "👁️",
-        title: "Vista Previa en Tiempo Real",
-        content: `
-          <p style="margin-bottom:10px; line-height:1.5;"><b>¡Todo lo que escribas se actualiza aquí al instante!</b></p>
-          <p style="margin-bottom:10px; line-height:1.5;">No tienes que presionar guardar ni esperar. Puedes ver exactamente cómo quedará el afiche final con su proporción 4:5 perfecta.</p>
-          <div style="background:rgba(255,255,255,0.05); padding:8px 12px; border-radius:6px; font-size:12px; color:#CBD5E1;">
-            🔍 Usa los botones de zoom arriba (<b>Ajustar</b>, <b>100%</b>, <b>70%</b>) para adaptar el tamaño a tu pantalla.
-          </div>
-        `,
-        placement: "left"
-      },
-      {
-        target: "#stepExport",
-        badge: "Paso 8 de 8",
-        icon: "🚀",
-        title: "¡Descarga y Comparte tu Vacante!",
-        content: `
-          <p style="margin-bottom:10px; line-height:1.5;">Cuando tu diseño esté listo, tienes 3 formas de exportarlo en la barra superior:</p>
-          <ul style="padding-left:18px; margin-bottom:10px; font-size:12px; color:#CBD5E1; line-height:1.5;">
-            <li style="margin-bottom:6px;"><b>Descargar JPEG (HD):</b> Imagen ultra nítida de alta resolución, ideal para LinkedIn, estados de WhatsApp, Instagram o portal web.</li>
-            <li style="margin-bottom:6px;"><b>Descargar PDF:</b> Documento vectorial para imprimir en tamaño carta/afiche o enviar por correo.</li>
-            <li><b>Copiar Imagen:</b> La copia al portapapeles para pegarla directo (Ctrl+V) en WhatsApp Web, Slack o correo sin guardar archivos.</li>
-          </ul>
-        `,
-        placement: "bottom-end"
-      },
-      {
-        target: null, // Center modal
-        badge: "¡Felicitaciones!",
-        icon: "🎉",
-        title: "¡Ya eres un/a experto/a!",
-        content: `
-          <p style="margin-bottom:12px; line-height:1.5;">Ya conoces todos los pasos para crear vacantes y piezas corporativas en segundos.</p>
-          <div style="background:rgba(1,187,220,0.1); border:1px solid rgba(1,187,220,0.3); border-radius:10px; padding:12px 14px; margin-bottom:14px;">
-            <div style="font-weight:700; color:#38BDF8; margin-bottom:4px; font-size:13px;">💡 Recuerda:</div>
-            <div style="font-size:12px; color:#E2E8F0; line-height:1.4;">Si alguna vez tienes dudas, solo haz clic en el botón <b>"¿Cómo funciona? (Tutorial)"</b> en la barra superior para volver a ver esta guía interactiva cuando quieras.</div>
-          </div>
-          <p style="font-size:12px; color:#94A3B8;">¡Muchos éxitos encontrando el mejor talento para i2 Services!</p>
-        `,
-        btnNext: "¡Entendido! Empezar a crear ✨",
-        placement: "center"
-      }
-    ];
-
-    let currentTourStep = 0;
-    let isTourActive = false;
-
-    function startTutorial(isManual = false) {
-      isTourActive = true;
-      currentTourStep = 0;
-      const overlay = document.getElementById('tourOverlay');
-      overlay.classList.add('active');
-      renderTourStep();
-    }
-
-    function closeTour() {
-      isTourActive = false;
-      const overlay = document.getElementById('tourOverlay');
-      overlay.classList.remove('active');
-      overlay.classList.remove('center-mode');
-      document.getElementById('tourSpotlight').classList.remove('visible');
-      document.getElementById('tourBubble').classList.remove('visible');
-      try {
-        localStorage.setItem('i2_vacantes_tour_seen', 'true');
-      } catch (e) {}
-    }
-
-    function nextTourStep() {
-      if (currentTourStep < TOUR_STEPS.length - 1) {
-        currentTourStep++;
-        renderTourStep();
-      } else {
-        closeTour();
-        showToast('¡Tutorial completado! Ya puedes crear tu vacante.');
-      }
-    }
-
-    function prevTourStep() {
-      if (currentTourStep > 0) {
-        currentTourStep--;
-        renderTourStep();
-      }
-    }
-
-    function goToTourStep(index) {
-      if (index >= 0 && index < TOUR_STEPS.length) {
-        currentTourStep = index;
-        renderTourStep();
-      }
-    }
-
-    function handleTourBackdropClick(event) {
-      // Don't close immediately on background click to prevent accidental closes
-    }
-
-    function renderTourStep() {
-      const step = TOUR_STEPS[currentTourStep];
-      const bubbleEl = document.getElementById('tourBubble');
-      const spotlightEl = document.getElementById('tourSpotlight');
-
-      // Update contents
-      document.getElementById('tourBadge').textContent = step.badge;
-      document.getElementById('tourIcon').textContent = step.icon;
-      document.getElementById('tourTitleText').textContent = step.title;
-      document.getElementById('tourContent').innerHTML = step.content;
-
-      // Update Next button label
-      const btnNext = document.getElementById('btnTourNext');
-      if (step.btnNext) {
-        btnNext.innerHTML = step.btnNext;
-      } else if (currentTourStep === TOUR_STEPS.length - 1) {
-        btnNext.innerHTML = "¡Entendido! Empezar a crear ✨";
-      } else {
-        btnNext.innerHTML = "Siguiente →";
-      }
-
-      // Hide or show Prev button
-      const btnPrev = document.getElementById('btnTourPrev');
-      btnPrev.style.display = currentTourStep === 0 ? 'none' : 'inline-block';
-
-      // Render Dots
-      const dotsContainer = document.getElementById('tourDots');
-      dotsContainer.innerHTML = '';
-      TOUR_STEPS.forEach((_, idx) => {
-        const dot = document.createElement('div');
-        dot.className = 'tour-dot' + (idx === currentTourStep ? ' active' : '');
-        dot.title = `Ir al paso ${idx + 1}`;
-        dot.onclick = () => goToTourStep(idx);
-        dotsContainer.appendChild(dot);
-      });
-
-      // Show bubble
-      bubbleEl.classList.add('visible');
-
-      // If target exists, scroll into view if inside panel
-      if (step.target) {
-        const targetEl = document.querySelector(step.target);
-        if (targetEl) {
-          const panel = document.querySelector('.controls-panel');
-          if (panel && panel.contains(targetEl)) {
-            const panelRect = panel.getBoundingClientRect();
-            const targetRect = targetEl.getBoundingClientRect();
-            const offset = (targetRect.top - panelRect.top) - (panelRect.height / 2) + (targetRect.height / 2);
-            panel.scrollBy({ top: offset, behavior: 'smooth' });
-          }
-
-          // Delay slightly for smooth scroll before positioning
-          setTimeout(() => {
-            positionTourBubble(targetEl, step.placement, bubbleEl, spotlightEl);
-          }, 180);
-          return;
-        }
-      }
-
-      // Fallback or center
-      positionTourBubble(null, 'center', bubbleEl, spotlightEl);
-    }
-
-    function positionTourBubble(targetEl, placement, bubbleEl, spotlightEl) {
-      const arrowEl = bubbleEl.querySelector('.tour-arrow');
-      arrowEl.className = 'tour-arrow';
-
-      if (!targetEl || placement === 'center') {
-        spotlightEl.classList.remove('visible');
-        bubbleEl.classList.add('center');
-        arrowEl.classList.add('arrow-hidden');
-        document.getElementById('tourOverlay').classList.add('center-mode');
-        return;
-      }
-
-      document.getElementById('tourOverlay').classList.remove('center-mode');
-      const rect = targetEl.getBoundingClientRect();
-      const pad = 8;
-
-      // Spotlight coordinates
-      spotlightEl.style.top = Math.max(0, rect.top - pad) + 'px';
-      spotlightEl.style.left = Math.max(0, rect.left - pad) + 'px';
-      spotlightEl.style.width = (rect.width + pad * 2) + 'px';
-      spotlightEl.style.height = (rect.height + pad * 2) + 'px';
-      spotlightEl.classList.add('visible');
-
-      bubbleEl.classList.remove('center');
-
-      const margin = 16;
-      const vWidth = window.innerWidth;
-      const vHeight = window.innerHeight;
-      const bubbleWidth = bubbleEl.offsetWidth || 440;
-      const bubbleHeight = bubbleEl.offsetHeight || 320;
-
-      let top, left;
-
-      if (placement === 'right' && (rect.right + 20 + bubbleWidth <= vWidth - margin)) {
-        left = rect.right + 20;
-        top = rect.top + (rect.height / 2) - (bubbleHeight / 2);
-        arrowEl.classList.add('arrow-left');
-        const clampedTop = Math.max(margin, Math.min(vHeight - bubbleHeight - margin, top));
-        const arrowTop = Math.max(16, Math.min(bubbleHeight - 24, (rect.top + rect.height / 2) - clampedTop - 7));
-        arrowEl.style.top = arrowTop + 'px';
-        arrowEl.style.left = '-7px';
-        arrowEl.style.right = 'auto';
-        arrowEl.style.bottom = 'auto';
-        top = clampedTop;
-      } else if (placement === 'left' && (rect.left - 20 - bubbleWidth >= margin)) {
-        left = rect.left - bubbleWidth - 20;
-        top = rect.top + (rect.height / 2) - (bubbleHeight / 2);
-        arrowEl.classList.add('arrow-right');
-        const clampedTop = Math.max(margin, Math.min(vHeight - bubbleHeight - margin, top));
-        const arrowTop = Math.max(16, Math.min(bubbleHeight - 24, (rect.top + rect.height / 2) - clampedTop - 7));
-        arrowEl.style.top = arrowTop + 'px';
-        arrowEl.style.right = '-7px';
-        arrowEl.style.left = 'auto';
-        arrowEl.style.bottom = 'auto';
-        top = clampedTop;
-      } else if (placement === 'bottom-end') {
-        top = rect.bottom + 16;
-        left = Math.max(margin, Math.min(rect.right - bubbleWidth, vWidth - bubbleWidth - margin));
-        arrowEl.classList.add('arrow-top');
-        const arrowRight = Math.max(20, Math.min(bubbleWidth - 30, (left + bubbleWidth) - (rect.right - 80)));
-        arrowEl.style.right = arrowRight + 'px';
-        arrowEl.style.top = '-7px';
-        arrowEl.style.left = 'auto';
-        arrowEl.style.bottom = 'auto';
-      } else {
-        // Fallback: place below or center
-        if (rect.bottom + 20 + bubbleHeight <= vHeight - margin) {
-          top = rect.bottom + 20;
-          left = Math.max(margin, Math.min(vWidth - bubbleWidth - margin, rect.left));
-          arrowEl.classList.add('arrow-top');
-          arrowEl.style.top = '-7px';
-          arrowEl.style.right = '40px';
-          arrowEl.style.left = 'auto';
-          arrowEl.style.bottom = 'auto';
-        } else {
-          top = Math.max(margin, rect.top - bubbleHeight - 20);
-          left = Math.max(margin, Math.min(vWidth - bubbleWidth - margin, rect.left));
-          arrowEl.classList.add('arrow-bottom');
-          arrowEl.style.bottom = '-7px';
-          arrowEl.style.left = '40px';
-          arrowEl.style.top = 'auto';
-          arrowEl.style.right = 'auto';
-        }
-      }
-
-      top = Math.max(margin, Math.min(vHeight - bubbleHeight - margin, top));
-      left = Math.max(margin, Math.min(vWidth - bubbleWidth - margin, left));
-
-      bubbleEl.style.top = top + 'px';
-      bubbleEl.style.left = left + 'px';
-    }
-
-    // Keyboard navigation for tutorial
-    window.addEventListener('keydown', (e) => {
-      if (!isTourActive) return;
-      if (e.key === 'Escape') {
-        closeTour();
-      } else if (e.key === 'ArrowRight' || e.key === 'Enter') {
-        nextTourStep();
-      } else if (e.key === 'ArrowLeft') {
-        prevTourStep();
-      }
-    });
-
-    // Reposition tour on resize if active
-    window.addEventListener('resize', () => {
-      if (isTourActive) {
-        renderTourStep();
-      }
-    });
-
-    // Auto-launch tour on first visit
-    window.addEventListener('load', () => {
-      try {
-        const hasSeen = localStorage.getItem('i2_vacantes_tour_seen');
-        if (!hasSeen) {
-          setTimeout(() => {
-            startTutorial(false);
-          }, 800);
-        }
-      } catch (e) {}
-    });
-
-  </script>
+  <script src="/vacantes/vendor/html2canvas.min.js"></script>
   <script>if (typeof html2canvas === 'undefined') { document.write('<script src="vendor/html2canvas.min.js"><\/script>'); }</script>
   <script>if (typeof html2canvas === 'undefined') { document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"><\/script>'); }</script>
   <script src="/vacantes/vendor/jspdf.umd.min.js"></script>
@@ -1244,14 +847,13 @@
       position: fixed;
       inset: 0;
       z-index: 99990;
-      pointer-events: auto;
+      pointer-events: none;
       opacity: 0;
-      visibility: hidden;
-      transition: opacity 280ms var(--ease), visibility 280ms var(--ease);
+      transition: opacity 240ms var(--ease);
     }
     .tour-overlay.active {
       opacity: 1;
-      visibility: visible;
+      pointer-events: auto;
     }
     .tour-overlay.center-mode {
       background: rgba(4, 11, 23, 0.82);
@@ -1294,6 +896,7 @@
       transform: scale(1);
     }
     .tour-bubble.center {
+      width: 480px;
       top: 50% !important;
       left: 50% !important;
       transform: translate(-50%, -50%) scale(1) !important;
@@ -2439,6 +2042,413 @@ Nivel de inglés conversacional para coordinación internacional.</textarea>
       </div>
     </div>
   </div>
+
+
+  <script>
+    // ============================================================
+    // ONBOARDING TUTORIAL & GUIDED TOUR JAVASCRIPT
+    // ============================================================
+    const TOUR_STEPS = [
+      {
+        target: null, // Center modal
+        badge: "Bienvenida",
+        icon: "👋",
+        title: "¡Bienvenido/a al Creador de Vacantes!",
+        content: `
+          <p style="margin-bottom:12px; line-height:1.5;">Esta plataforma fue creada para que <b>cualquier persona</b> pueda diseñar afiches de ofertas de empleo con la imagen corporativa oficial de <b>i2 Services</b> en menos de 2 minutos.</p>
+          <div style="background:rgba(1,187,220,0.08); border:1px solid rgba(1,187,220,0.25); border-radius:10px; padding:12px 14px; margin-bottom:12px;">
+            <div style="font-weight:700; color:#38BDF8; margin-bottom:4px; font-size:12px;">🎯 Lo que puedes hacer aquí:</div>
+            <div style="font-size:12px; color:#CBD5E1; line-height:1.4;">Crearás afiches modernos listos para compartir por WhatsApp, publicar en LinkedIn o imprimir, sin necesidad de saber diseño gráfico ni programas complicados.</div>
+          </div>
+          <p style="font-size:12px; color:#94A3B8;">¿Hacemos un recorrido guiado rápido de 1 minuto para ver cómo funciona paso a paso?</p>
+        `,
+        btnNext: "Iniciar recorrido guiado →",
+        placement: "center"
+      },
+      {
+        target: "#stepPresets",
+        badge: "Paso 1 de 8",
+        icon: "⚡",
+        title: "Plantillas Rápidas (1 Clic)",
+        content: `
+          <p style="margin-bottom:10px; line-height:1.5;"><b>¡No tienes que empezar en blanco!</b></p>
+          <p style="margin-bottom:10px; line-height:1.5;">Haz clic en cualquiera de estos 4 botones de ejemplo (<i>Social Media, Diseñador/a, Geólogo/a o Abogado/a</i>). Al presionar uno, el formulario se llenará automáticamente con textos y fotos profesionales que luego puedes editar.</p>
+          <div style="background:rgba(255,255,255,0.05); border-left:3px solid #01BBDC; padding:8px 12px; border-radius:4px; font-size:12px; color:#E2E8F0;">
+            💡 <b>Tip:</b> Prueba dar clic en un ejemplo ahora mismo para ver cómo cambia la vista previa.
+          </div>
+        `,
+        placement: "right"
+      },
+      {
+        target: "#stepJobTitle",
+        badge: "Paso 2 de 8",
+        icon: "📝",
+        title: "Nombre del Cargo e Insignia",
+        content: `
+          <p style="margin-bottom:10px; line-height:1.5;">Aquí personalizas los datos principales del rol:</p>
+          <ul style="padding-left:18px; margin-bottom:10px; font-size:12px; color:#CBD5E1; line-height:1.5;">
+            <li style="margin-bottom:4px;"><b>Insignia Superior:</b> Por defecto dice <i>"Vacante"</i>, pero puedes cambiarlo a <i>"Convocatoria"</i>, <i>"Pasantía"</i> o <i>"Nueva Posición"</i>.</li>
+            <li style="margin-bottom:4px;"><b>Título de la Vacante:</b> El nombre del puesto en mayúsculas (ej: <i>ANALISTA CONTABLE</i>, <i>INGENIERO DE MINAS</i>).</li>
+            <li><b>Subtítulo:</b> Especialidad o área de enfoque (ej: <i>Perfil Senior · Medellín</i>).</li>
+          </ul>
+        `,
+        placement: "right"
+      },
+      {
+        target: "#stepHeaderPhoto",
+        badge: "Paso 3 de 8",
+        icon: "📸",
+        title: "Fotografía de Cabecera",
+        content: `
+          <p style="margin-bottom:10px; line-height:1.5;">Elige la foto que mejor represente la vacante haciendo clic en una de las opciones oficiales:</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px; margin-bottom:10px; color:#CBD5E1;">
+            <div style="background:rgba(255,255,255,0.04); padding:6px 8px; border-radius:6px;">🎨 <b>Estudio:</b> Creativos / Media</div>
+            <div style="background:rgba(255,255,255,0.04); padding:6px 8px; border-radius:6px;">💻 <b>Tecnología:</b> TI / Datos</div>
+            <div style="background:rgba(255,255,255,0.04); padding:6px 8px; border-radius:6px;">🏢 <b>Oficina:</b> Legal / Admin</div>
+            <div style="background:rgba(255,255,255,0.04); padding:6px 8px; border-radius:6px;">⛰️ <b>Campo:</b> Geología / Mina</div>
+          </div>
+          <p style="font-size:12px; color:#94A3B8; line-height:1.4;">También puedes subir una foto propia o presionar <b>"Quitar / Dejar Sin Fotografía"</b> para un fondo corporativo minimalista azul.</p>
+        `,
+        placement: "right"
+      },
+      {
+        target: "#stepObjective",
+        badge: "Paso 4 de 8",
+        icon: "🎯",
+        title: "Misión y Responsabilidades",
+        content: `
+          <p style="margin-bottom:10px; line-height:1.5;">En esta sección defines el objetivo general del cargo y las funciones que realizará el colaborador.</p>
+          <div style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:10px 12px; margin-bottom:8px;">
+            <div style="font-weight:700; color:#34D399; font-size:12px; margin-bottom:4px;">✨ La magia de las viñetas automáticas:</div>
+            <div style="font-size:12px; color:#E2E8F0; line-height:1.4;">No necesitas poner guiones ni números. Simplemente escribe una función y presiona la tecla <b>Enter</b>. Cada salto de línea se convertirá al instante en una viñeta gráfica en el afiche.</div>
+          </div>
+        `,
+        placement: "right"
+      },
+      {
+        target: "#stepRequirements",
+        badge: "Paso 5 de 8",
+        icon: "📋",
+        title: "Perfil y Requisitos Buscados",
+        content: `
+          <p style="margin-bottom:10px; line-height:1.5;">Especifica aquí lo que debe tener el candidato ideal:</p>
+          <ul style="padding-left:18px; margin-bottom:10px; font-size:12px; color:#CBD5E1; line-height:1.5;">
+            <li style="margin-bottom:3px;">Años de experiencia laboral.</li>
+            <li style="margin-bottom:3px;">Título universitario o carrera técnica requerida.</li>
+            <li style="margin-bottom:3px;">Herramientas o software que debe dominar.</li>
+            <li>Nivel de inglés o idiomas adicionales.</li>
+          </ul>
+          <p style="font-size:12px; color:#94A3B8;">Al igual que en las responsabilidades, cada <b>Enter</b> crea una nueva viñeta.</p>
+        `,
+        placement: "right"
+      },
+      {
+        target: "#stepContact",
+        badge: "Paso 6 de 8",
+        icon: "📅",
+        title: "Contacto, Ciudad y Fechas",
+        content: `
+          <p style="margin-bottom:10px; line-height:1.5;">Estos datos se mostrarán en la barra informativa inferior del afiche:</p>
+          <ul style="padding-left:18px; margin-bottom:10px; font-size:12px; color:#CBD5E1; line-height:1.5;">
+            <li style="margin-bottom:4px;"><b>Ubicación y Modalidad:</b> Ej. <i>Medellín, Colombia · Presencial</i>.</li>
+            <li style="margin-bottom:4px;"><b>Fecha Límite:</b> Hasta qué fecha se reciben postulaciones.</li>
+            <li><b>Correo Electrónico:</b> La dirección oficial a donde los aspirantes deben enviar su hoja de vida (ej: <i>yurany.sanchez@i2services.co</i>).</li>
+          </ul>
+        `,
+        placement: "right"
+      },
+      {
+        target: "#stepPreview",
+        badge: "Paso 7 de 8",
+        icon: "👁️",
+        title: "Vista Previa en Tiempo Real",
+        content: `
+          <p style="margin-bottom:10px; line-height:1.5;"><b>¡Todo lo que escribas se actualiza aquí al instante!</b></p>
+          <p style="margin-bottom:10px; line-height:1.5;">No tienes que presionar guardar ni esperar. Puedes ver exactamente cómo quedará el afiche final con su proporción 4:5 perfecta.</p>
+          <div style="background:rgba(255,255,255,0.05); padding:8px 12px; border-radius:6px; font-size:12px; color:#CBD5E1;">
+            🔍 Usa los botones de zoom arriba (<b>Ajustar</b>, <b>100%</b>, <b>70%</b>) para adaptar el tamaño a tu pantalla.
+          </div>
+        `,
+        placement: "left"
+      },
+      {
+        target: "#stepExport",
+        badge: "Paso 8 de 8",
+        icon: "🚀",
+        title: "¡Descarga y Comparte tu Vacante!",
+        content: `
+          <p style="margin-bottom:10px; line-height:1.5;">Cuando tu diseño esté listo, tienes 3 formas de exportarlo en la barra superior:</p>
+          <ul style="padding-left:18px; margin-bottom:10px; font-size:12px; color:#CBD5E1; line-height:1.5;">
+            <li style="margin-bottom:6px;"><b>Descargar JPEG (HD):</b> Imagen ultra nítida de alta resolución, ideal para LinkedIn, estados de WhatsApp, Instagram o portal web.</li>
+            <li style="margin-bottom:6px;"><b>Descargar PDF:</b> Documento vectorial para imprimir en tamaño carta/afiche o enviar por correo.</li>
+            <li><b>Copiar Imagen:</b> La copia al portapapeles para pegarla directo (Ctrl+V) en WhatsApp Web, Slack o correo sin guardar archivos.</li>
+          </ul>
+        `,
+        placement: "bottom-end"
+      },
+      {
+        target: null, // Center modal
+        badge: "¡Felicitaciones!",
+        icon: "🎉",
+        title: "¡Ya eres un/a experto/a!",
+        content: `
+          <p style="margin-bottom:12px; line-height:1.5;">Ya conoces todos los pasos para crear vacantes y piezas corporativas en segundos.</p>
+          <div style="background:rgba(1,187,220,0.1); border:1px solid rgba(1,187,220,0.3); border-radius:10px; padding:12px 14px; margin-bottom:14px;">
+            <div style="font-weight:700; color:#38BDF8; margin-bottom:4px; font-size:13px;">💡 Recuerda:</div>
+            <div style="font-size:12px; color:#E2E8F0; line-height:1.4;">Si alguna vez tienes dudas, solo haz clic en el botón <b>"¿Cómo funciona? (Tutorial)"</b> en la barra superior para volver a ver esta guía interactiva cuando quieras.</div>
+          </div>
+          <p style="font-size:12px; color:#94A3B8;">¡Muchos éxitos encontrando el mejor talento para i2 Services!</p>
+        `,
+        btnNext: "¡Entendido! Empezar a crear ✨",
+        placement: "center"
+      }
+    ];
+
+    let currentTourStep = 0;
+    let isTourActive = false;
+
+    // Explicit global exposure
+    window.startTutorial = startTutorial;
+    window.closeTour = closeTour;
+    window.nextTourStep = nextTourStep;
+    window.prevTourStep = prevTourStep;
+    window.goToTourStep = goToTourStep;
+    window.handleTourBackdropClick = handleTourBackdropClick;
+
+    function startTutorial(isManual = false) {
+      isTourActive = true;
+      currentTourStep = 0;
+      const overlay = document.getElementById('tourOverlay');
+      overlay.classList.add('active');
+      renderTourStep();
+    }
+
+    function closeTour() {
+      isTourActive = false;
+      const overlay = document.getElementById('tourOverlay');
+      overlay.classList.remove('active');
+      overlay.classList.remove('center-mode');
+      document.getElementById('tourSpotlight').classList.remove('visible');
+      document.getElementById('tourBubble').classList.remove('visible');
+      try {
+        localStorage.setItem('i2_vacantes_tour_seen', 'true');
+      } catch (e) {}
+    }
+
+    function nextTourStep() {
+      if (currentTourStep < TOUR_STEPS.length - 1) {
+        currentTourStep++;
+        renderTourStep();
+      } else {
+        closeTour();
+        showToast('¡Tutorial completado! Ya puedes crear tu vacante.');
+      }
+    }
+
+    function prevTourStep() {
+      if (currentTourStep > 0) {
+        currentTourStep--;
+        renderTourStep();
+      }
+    }
+
+    function goToTourStep(index) {
+      if (index >= 0 && index < TOUR_STEPS.length) {
+        currentTourStep = index;
+        renderTourStep();
+      }
+    }
+
+    function handleTourBackdropClick(event) {
+      // Don't close immediately on background click to prevent accidental closes
+    }
+
+    function renderTourStep() {
+      const step = TOUR_STEPS[currentTourStep];
+      const bubbleEl = document.getElementById('tourBubble');
+      const spotlightEl = document.getElementById('tourSpotlight');
+
+      // Update contents
+      document.getElementById('tourBadge').textContent = step.badge;
+      document.getElementById('tourIcon').textContent = step.icon;
+      document.getElementById('tourTitleText').textContent = step.title;
+      document.getElementById('tourContent').innerHTML = step.content;
+
+      // Update Next button label
+      const btnNext = document.getElementById('btnTourNext');
+      if (step.btnNext) {
+        btnNext.innerHTML = step.btnNext;
+      } else if (currentTourStep === TOUR_STEPS.length - 1) {
+        btnNext.innerHTML = "¡Entendido! Empezar a crear ✨";
+      } else {
+        btnNext.innerHTML = "Siguiente →";
+      }
+
+      // Hide or show Prev button
+      const btnPrev = document.getElementById('btnTourPrev');
+      btnPrev.style.display = currentTourStep === 0 ? 'none' : 'inline-block';
+
+      // Render Dots
+      const dotsContainer = document.getElementById('tourDots');
+      dotsContainer.innerHTML = '';
+      TOUR_STEPS.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = 'tour-dot' + (idx === currentTourStep ? ' active' : '');
+        dot.title = `Ir al paso ${idx + 1}`;
+        dot.onclick = () => goToTourStep(idx);
+        dotsContainer.appendChild(dot);
+      });
+
+      // Show bubble
+      bubbleEl.classList.add('visible');
+
+      // If target exists, scroll into view if inside panel
+      if (step.target) {
+        const targetEl = document.querySelector(step.target);
+        if (targetEl) {
+          const panel = document.querySelector('.controls-panel');
+          if (panel && panel.contains(targetEl)) {
+            const panelRect = panel.getBoundingClientRect();
+            const targetRect = targetEl.getBoundingClientRect();
+            const offset = (targetRect.top - panelRect.top) - (panelRect.height / 2) + (targetRect.height / 2);
+            panel.scrollBy({ top: offset, behavior: 'smooth' });
+          }
+
+          // Delay slightly for smooth scroll before positioning
+          setTimeout(() => {
+            positionTourBubble(targetEl, step.placement, bubbleEl, spotlightEl);
+          }, 180);
+          return;
+        }
+      }
+
+      // Fallback or center
+      positionTourBubble(null, 'center', bubbleEl, spotlightEl);
+    }
+
+    function positionTourBubble(targetEl, placement, bubbleEl, spotlightEl) {
+      const arrowEl = bubbleEl.querySelector('.tour-arrow');
+      arrowEl.className = 'tour-arrow';
+
+      if (!targetEl || placement === 'center') {
+        spotlightEl.classList.remove('visible');
+        bubbleEl.classList.add('center');
+        arrowEl.classList.add('arrow-hidden');
+        document.getElementById('tourOverlay').classList.add('center-mode');
+        return;
+      }
+
+      document.getElementById('tourOverlay').classList.remove('center-mode');
+      const rect = targetEl.getBoundingClientRect();
+      const pad = 8;
+
+      // Spotlight coordinates
+      spotlightEl.style.top = Math.max(0, rect.top - pad) + 'px';
+      spotlightEl.style.left = Math.max(0, rect.left - pad) + 'px';
+      spotlightEl.style.width = (rect.width + pad * 2) + 'px';
+      spotlightEl.style.height = (rect.height + pad * 2) + 'px';
+      spotlightEl.classList.add('visible');
+
+      bubbleEl.classList.remove('center');
+
+      const margin = 16;
+      const vWidth = window.innerWidth;
+      const vHeight = window.innerHeight;
+      const bubbleWidth = bubbleEl.offsetWidth || 440;
+      const bubbleHeight = bubbleEl.offsetHeight || 320;
+
+      let top, left;
+
+      if (placement === 'right' && (rect.right + 20 + bubbleWidth <= vWidth - margin)) {
+        left = rect.right + 20;
+        top = rect.top + (rect.height / 2) - (bubbleHeight / 2);
+        arrowEl.classList.add('arrow-left');
+        const clampedTop = Math.max(margin, Math.min(vHeight - bubbleHeight - margin, top));
+        const arrowTop = Math.max(16, Math.min(bubbleHeight - 24, (rect.top + rect.height / 2) - clampedTop - 7));
+        arrowEl.style.top = arrowTop + 'px';
+        arrowEl.style.left = '-7px';
+        arrowEl.style.right = 'auto';
+        arrowEl.style.bottom = 'auto';
+        top = clampedTop;
+      } else if (placement === 'left' && (rect.left - 20 - bubbleWidth >= margin)) {
+        left = rect.left - bubbleWidth - 20;
+        top = rect.top + (rect.height / 2) - (bubbleHeight / 2);
+        arrowEl.classList.add('arrow-right');
+        const clampedTop = Math.max(margin, Math.min(vHeight - bubbleHeight - margin, top));
+        const arrowTop = Math.max(16, Math.min(bubbleHeight - 24, (rect.top + rect.height / 2) - clampedTop - 7));
+        arrowEl.style.top = arrowTop + 'px';
+        arrowEl.style.right = '-7px';
+        arrowEl.style.left = 'auto';
+        arrowEl.style.bottom = 'auto';
+        top = clampedTop;
+      } else if (placement === 'bottom-end') {
+        top = rect.bottom + 16;
+        left = Math.max(margin, Math.min(rect.right - bubbleWidth, vWidth - bubbleWidth - margin));
+        arrowEl.classList.add('arrow-top');
+        const arrowRight = Math.max(20, Math.min(bubbleWidth - 30, (left + bubbleWidth) - (rect.right - 80)));
+        arrowEl.style.right = arrowRight + 'px';
+        arrowEl.style.top = '-7px';
+        arrowEl.style.left = 'auto';
+        arrowEl.style.bottom = 'auto';
+      } else {
+        // Fallback: place below or center
+        if (rect.bottom + 20 + bubbleHeight <= vHeight - margin) {
+          top = rect.bottom + 20;
+          left = Math.max(margin, Math.min(vWidth - bubbleWidth - margin, rect.left));
+          arrowEl.classList.add('arrow-top');
+          arrowEl.style.top = '-7px';
+          arrowEl.style.right = '40px';
+          arrowEl.style.left = 'auto';
+          arrowEl.style.bottom = 'auto';
+        } else {
+          top = Math.max(margin, rect.top - bubbleHeight - 20);
+          left = Math.max(margin, Math.min(vWidth - bubbleWidth - margin, rect.left));
+          arrowEl.classList.add('arrow-bottom');
+          arrowEl.style.bottom = '-7px';
+          arrowEl.style.left = '40px';
+          arrowEl.style.top = 'auto';
+          arrowEl.style.right = 'auto';
+        }
+      }
+
+      top = Math.max(margin, Math.min(vHeight - bubbleHeight - margin, top));
+      left = Math.max(margin, Math.min(vWidth - bubbleWidth - margin, left));
+
+      bubbleEl.style.top = top + 'px';
+      bubbleEl.style.left = left + 'px';
+    }
+
+    // Keyboard navigation for tutorial
+    window.addEventListener('keydown', (e) => {
+      if (!isTourActive) return;
+      if (e.key === 'Escape') {
+        closeTour();
+      } else if (e.key === 'ArrowRight' || e.key === 'Enter') {
+        nextTourStep();
+      } else if (e.key === 'ArrowLeft') {
+        prevTourStep();
+      }
+    });
+
+    // Reposition tour on resize if active
+    window.addEventListener('resize', () => {
+      if (isTourActive) {
+        renderTourStep();
+      }
+    });
+
+    // Auto-launch tour on first visit
+    window.addEventListener('load', () => {
+      try {
+        const hasSeen = localStorage.getItem('i2_vacantes_tour_seen');
+        if (!hasSeen) {
+          setTimeout(() => {
+            startTutorial(false);
+          }, 800);
+        }
+      } catch (e) {}
+    });
+  </script>
 
 </body>
 </html>
