@@ -444,35 +444,22 @@ El Poblado · Medellín</textarea>
 
         <!-- OPCIONES DE FONDO -->
         <div class="form-group" style="margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08);">
-          <label style="color: var(--cyan); font-weight: 700; margin-bottom: 8px; display: block;">Modo de Animación / Fondo:</label>
-          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;">
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
-              <input type="radio" name="bgStyleOption" value="banner" checked onchange="updateSignature()" style="margin-top: 3px;">
-              <div>
-                <strong style="color: #5BE2F8;">Franja Ondas Animadas (100% Compatible con Gmail, Outlook y Celular)</strong>
-                <p style="font-size: 11px; color: #94A3B8; margin: 2px 0 0 0;">Inserta la onda de partículas en la base de la tarjeta mediante &lt;img&gt;. En Gmail y Outlook NUNCA se bloquea y se reproduce de inmediato.</p>
-              </div>
+          <label style="color: var(--cyan); font-weight: 700; margin-bottom: 8px; display: block;">Estilo de Fondo en Correo:</label>
+          <div style="display: flex; gap: 16px; margin-bottom: 12px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
+              <input type="radio" name="bgStyleOption" value="gif" checked onchange="updateSignature()">
+              <span>Olas Animadas (GIF de Fondo)</span>
             </label>
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
-              <input type="radio" name="bgStyleOption" value="gif" onchange="updateSignature()" style="margin-top: 3px;">
-              <div>
-                <strong>Fondo Completo Animado (Para Outlook de escritorio / Apple Mail / M365)</strong>
-                <p style="font-size: 11px; color: #94A3B8; margin: 2px 0 0 0;">Cubre toda la tarjeta con el GIF. (Nota: Gmail web suele filtrar fondos CSS detrás de texto y mostrará azul marino plano).</p>
-              </div>
-            </label>
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
-              <input type="radio" name="bgStyleOption" value="solid" onchange="updateSignature()" style="margin-top: 3px;">
-              <div>
-                <strong>Azul Marino Institucional Sólido (#08172E)</strong>
-                <p style="font-size: 11px; color: #94A3B8; margin: 2px 0 0 0;">Diseño corporativo sobrio y minimalista sin movimiento.</p>
-              </div>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #fff; cursor: pointer;">
+              <input type="radio" name="bgStyleOption" value="solid" onchange="updateSignature()">
+              <span>Azul Marino Sólido (#08172E)</span>
             </label>
           </div>
           <div id="gifUrlContainer" class="form-group" style="margin-bottom: 0;">
-            <label style="font-size: 11px; color: #94A3B8;">URL pública de los recursos en CDN:</label>
+            <label style="font-size: 11px; color: #94A3B8;">URL pública del GIF de fondo:</label>
             <input type="text" id="inputGifUrl" value="https://cdn.jsdelivr.net/gh/i2serviceslab/i2tools@main/public/email-signatures/particle-wave-bg.gif" oninput="updateSignature()" style="font-size: 12px;">
             <p style="font-size: 11px; color: #64748B; margin-top: 4px; line-height: 1.4;">
-              * Alojado en CDN global de alta disponibilidad para que Gmail y Outlook lo descarguen al instante.
+              * Alojado en CDN global de alta disponibilidad para que Outlook y clientes compatibles lo descarguen al instante.
             </p>
           </div>
         </div>
@@ -490,9 +477,6 @@ El Poblado · Medellín</textarea>
           <div class="card-preview-wrapper" id="cardPreviewWrapper">
             <div id="lottieParticleBg" class="lottie-particle-layer"></div>
             <div class="card-content-layer" id="signatureContentLayer"></div>
-            <div id="bannerPreviewLayer" style="display: block; line-height: 0; font-size: 0; border-top: 1px solid rgba(113, 140, 193, 0.2); background-color: #08172E;">
-              <img src="particle-wave-banner.gif" width="580" height="34" alt="i2 Services Waves" style="display: block; width: 100%; max-width: 580px; height: 34px; border: 0;" />
-            </div>
           </div>
 
           <table cellpadding="0" cellspacing="0" border="0" style="max-width: 580px; width: 100%; margin-top: 8px;">
@@ -644,12 +628,10 @@ El Poblado · Medellín</textarea>
         `;
       }
 
-      const bgOption = document.querySelector('input[name="bgStyleOption"]:checked')?.value || 'banner';
+      const bgOption = document.querySelector('input[name="bgStyleOption"]:checked')?.value || 'gif';
       const cdnBase = 'https://cdn.jsdelivr.net/gh/i2serviceslab/i2tools@main/public/email-signatures';
       const gifUrl = document.getElementById('inputGifUrl')?.value || `${cdnBase}/particle-wave-bg.gif`;
-      const bannerUrl = `${cdnBase}/particle-wave-banner.gif`;
 
-      const isBanner = bgOption === 'banner';
       const isGifBg = isForEmail && bgOption === 'gif';
 
       const bgStyle = isForEmail 
@@ -672,15 +654,6 @@ El Poblado · Medellín</textarea>
         </v:textbox>
       </v:rect>
       <![endif]-->` : '';
-
-      const bannerRow = (isForEmail && isBanner) ? `
-  <tr>
-    <td style="padding: 0; line-height: 0; font-size: 0; border-top: 1px solid rgba(113, 140, 193, 0.2); overflow: hidden; border-bottom-left-radius: 11px; border-bottom-right-radius: 11px; background-color: #08172E;">
-      <a href="https://i2services.co" target="_blank" style="text-decoration: none; display: block; line-height: 0;">
-        <img src="${bannerUrl}" width="580" height="34" alt="i2 Services Waves" style="display: block; width: 100%; max-width: 580px; height: 34px; border: 0; outline: none; text-decoration: none; border-bottom-left-radius: 11px; border-bottom-right-radius: 11px;" />
-      </a>
-    </td>
-  </tr>` : '';
 
       return `
 <table cellpadding="0" cellspacing="0" border="0" ${bgAttr} style="${bgStyle} font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif; font-size: 13px; line-height: 1.4; color: #FFFFFF; max-width: 580px; width: 100%; border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
@@ -738,7 +711,6 @@ El Poblado · Medellín</textarea>
       ${vmlEnd}
     </td>
   </tr>
-  ${bannerRow}
 </table>`;
     }
 
@@ -748,19 +720,15 @@ El Poblado · Medellín</textarea>
         contentLayer.innerHTML = buildSignatureTableHtml(false);
       }
       
-      const bgOption = document.querySelector('input[name="bgStyleOption"]:checked')?.value || 'banner';
+      const bgOption = document.querySelector('input[name="bgStyleOption"]:checked')?.value || 'gif';
       const gifContainer = document.getElementById('gifUrlContainer');
       const lottieBg = document.getElementById('lottieParticleBg');
-      const bannerPreview = document.getElementById('bannerPreviewLayer');
 
       if (gifContainer) {
-        gifContainer.style.display = (bgOption === 'gif' || bgOption === 'banner') ? 'block' : 'none';
+        gifContainer.style.display = bgOption === 'gif' ? 'block' : 'none';
       }
       if (lottieBg) {
         lottieBg.style.opacity = bgOption === 'gif' ? '0.22' : '0';
-      }
-      if (bannerPreview) {
-        bannerPreview.style.display = bgOption === 'banner' ? 'block' : 'none';
       }
 
       initLottieBg();
@@ -796,7 +764,7 @@ El Poblado · Medellín</textarea>
           const blobText = new Blob([textContent], { type: 'text/plain' });
           const data = [new ClipboardItem({ 'text/html': blobHtml, 'text/plain': blobText })];
           await navigator.clipboard.write(data);
-          showToast('✅ ¡Firma copiada! Pégala (Ctrl+V / Cmd+V) en Outlook');
+          showToast('✅ ¡Firma copiada! Pégala (Ctrl+V / Cmd+V) en Outlook o Gmail');
         } else {
           const range = document.createRange();
           range.selectNode(document.getElementById('cardPreviewWrapper'));
