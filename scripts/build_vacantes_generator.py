@@ -446,6 +446,18 @@ html_content = f'''<!DOCTYPE html>
     /* ========================================================
        POSTER CANVAS (EXACT 4:5 POSTER, 800 x 1000 px)
        ======================================================== */
+    .poster-scale-wrapper {{
+      position: relative;
+      width: 800px;
+      height: 1000px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      transition: width 180ms ease, height 180ms ease;
+      flex-shrink: 0;
+      margin-bottom: 24px;
+    }}
+
     .poster-container {{
       width: 800px;
       height: 1000px;
@@ -458,6 +470,7 @@ html_content = f'''<!DOCTYPE html>
       flex-direction: column;
       transform-origin: top center;
       transition: transform 180ms ease;
+      flex-shrink: 0;
     }}
 
     /* Top Photography Header Layer */
@@ -760,10 +773,12 @@ html_content = f'''<!DOCTYPE html>
 
     /* Poster Bottom Footer */
     .poster-footer {{
+      margin-top: auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 6px;
+      padding-top: 8px;
+      padding-bottom: 4px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
     }}
@@ -1376,7 +1391,8 @@ Nivel de inglés conversacional para coordinación internacional.</textarea>
       </div>
 
       <!-- Poster Artboard (800 x 1000 px) -->
-      <div class="poster-container" id="posterArtboard">
+      <div class="poster-scale-wrapper" id="posterScaleWrapper">
+        <div class="poster-container" id="posterArtboard">
         
         <!-- 1. Header with Photo & Organic Curve Overlay -->
         <div class="poster-header">
@@ -1531,6 +1547,7 @@ Nivel de inglés conversacional para coordinación internacional.</textarea>
 
         </div>
 
+      </div>
       </div>
 
     </section>
@@ -1917,16 +1934,36 @@ Nivel de inglés conversacional para coordinación internacional.</textarea>
     // Zoom Controls
     function setZoom(val) {{
       const el = document.getElementById('posterArtboard');
+      const wrapper = document.getElementById('posterScaleWrapper');
       document.querySelectorAll('.zoom-btn').forEach(b => b.classList.remove('active'));
 
+      let scale = 1.0;
       if (val === 'fit') {{
         document.getElementById('btnZoomFit').classList.add('active');
-        const parentH = window.innerHeight - 150;
-        const scale = Math.min(1.0, Math.max(0.55, parentH / 1000));
-        el.style.transform = `scale(${{scale}})`;
+        const previewPanel = document.querySelector('.preview-panel');
+        const toolbar = document.querySelector('.preview-toolbar');
+        const availH = (previewPanel ? previewPanel.clientHeight : window.innerHeight - 65) - (toolbar ? toolbar.offsetHeight + 40 : 80);
+        const availW = (previewPanel ? previewPanel.clientWidth : window.innerWidth - 460) - 60;
+        const scaleH = availH / 1000;
+        const scaleW = availW / 800;
+        scale = Math.min(1.0, Math.max(0.35, Math.min(scaleH, scaleW)));
       }} else {{
-        event?.currentTarget?.classList?.add('active');
-        el.style.transform = `scale(${{val}})`;
+        if (typeof event !== 'undefined' && event && event.currentTarget && event.currentTarget.classList) {{
+          event.currentTarget.classList.add('active');
+        }} else if (val === 0.7) {{
+          const btn = Array.from(document.querySelectorAll('.zoom-btn')).find(b => b.textContent.includes('70%'));
+          if (btn) btn.classList.add('active');
+        }} else if (val === 1.0) {{
+          const btn = Array.from(document.querySelectorAll('.zoom-btn')).find(b => b.textContent.includes('100%'));
+          if (btn) btn.classList.add('active');
+        }}
+        scale = val;
+      }}
+
+      el.style.transform = `scale(${{scale}})`;
+      if (wrapper) {{
+        wrapper.style.width = `${{Math.round(800 * scale)}}px`;
+        wrapper.style.height = `${{Math.round(1000 * scale)}}px`;
       }}
     }}
 
