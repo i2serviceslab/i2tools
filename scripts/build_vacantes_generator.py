@@ -52,12 +52,12 @@ html_content = f'''<!DOCTYPE html>
 
     body {{
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      background-color: var(--navy-950);
+      background-color: #06152B;
       color: #F8FAFC;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden;
+      overflow: hidden;
     }}
 
     /* Custom subtle scrollbars */
@@ -87,7 +87,7 @@ html_content = f'''<!DOCTYPE html>
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-blur: 10px;
+      flex-shrink: 0;
     }}
 
     .brand-section {{
@@ -174,12 +174,32 @@ html_content = f'''<!DOCTYPE html>
       display: grid;
       grid-template-columns: 460px 1fr;
       flex: 1;
-      min-height: calc(100vh - 65px);
+      height: calc(100vh - 65px);
+      min-height: 0;
+      overflow: hidden;
+      background: #06152B;
     }}
 
     @media (max-width: 1180px) {{
+      body {{
+        height: auto;
+        overflow-y: auto;
+      }}
       .workspace {{
         grid-template-columns: 1fr;
+        height: auto;
+        min-height: calc(100vh - 65px);
+        overflow: visible;
+      }}
+      .controls-panel {{
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+      }}
+      .preview-panel {{
+        height: auto !important;
+        min-height: 700px;
+        overflow: visible !important;
       }}
     }}
 
@@ -188,8 +208,9 @@ html_content = f'''<!DOCTYPE html>
       background: #06152B;
       border-right: 1px solid rgba(255, 255, 255, 0.08);
       padding: 24px;
+      padding-bottom: 60px;
       overflow-y: auto;
-      max-height: calc(100vh - 65px);
+      height: 100%;
     }}
 
     .panel-section {{
@@ -381,6 +402,8 @@ html_content = f'''<!DOCTYPE html>
       align-items: center;
       padding: 30px 20px;
       overflow-y: auto;
+      overflow-x: auto;
+      height: 100%;
       position: relative;
     }}
 
