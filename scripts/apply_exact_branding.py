@@ -114,7 +114,7 @@ firma_estatica_html = f'''<!-- =================================================
                   <img src="{icon_pin_uri}" width="14" height="14" alt="Ubicación" style="display: block; width: 14px; height: 14px; border: 0;" />
                 </td>
                 <td style="padding: 2px 0 2px 6px; vertical-align: middle; color: #94A3B8; font-size: 10px;">
-                  Cra. 43A # 1-50, San Fernando Plaza, Torre 2, Medellín, Colombia
+                  Cra. 43A #1 Sur 188<br>Oficina 610 · Torre Davivienda<br>El Poblado · Medellín
                 </td>
               </tr>
             </table>
@@ -217,7 +217,7 @@ firma_m365_html = f'''<!-- =====================================================
                   <img src="{icon_pin_uri}" width="14" height="14" alt="Ubicación" style="display: block; width: 14px; height: 14px; border: 0;" />
                 </td>
                 <td style="padding: 2px 0 2px 6px; vertical-align: middle; color: #94A3B8; font-size: 10px;">
-                  Cra. 43A # 1-50, San Fernando Plaza, Torre 2, Medellín, Colombia
+                  Cra. 43A #1 Sur 188<br>Oficina 610 · Torre Davivienda<br>El Poblado · Medellín
                 </td>
               </tr>
             </table>
@@ -893,7 +893,7 @@ generador_html = f'''<!DOCTYPE html>
                   <img src="${{ICON_PIN}}" width="14" height="14" alt="Ubicación" style="display: block; width: 14px; height: 14px; border: 0;" />
                 </td>
                 <td style="padding: 2px 0 2px 6px; vertical-align: middle; color: #94A3B8; font-size: 10px;">
-                  Cra. 43A # 1-50, San Fernando Plaza, Torre 2, Medellín, Colombia
+                  Cra. 43A #1 Sur 188<br>Oficina 610 · Torre Davivienda<br>El Poblado · Medellín
                 </td>
               </tr>
             </table>
