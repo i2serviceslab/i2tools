@@ -46,15 +46,12 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
         {/* Brand Logo with Tagline */}
-        <a href="#" className="flex flex-col items-start group shrink-0">
+        <a href="#" className="flex items-center group shrink-0 py-1">
           <img
             src="/i2-services-logo.png"
-            alt="i2 Services S.A.S."
-            className="h-7 sm:h-8 w-auto brightness-0 invert opacity-95 group-hover:opacity-100 transition-opacity"
+            alt="i2 Services S.A.S. - You Ground, our Experience"
+            className="h-9 sm:h-10 w-auto opacity-95 group-hover:opacity-100 transition-opacity drop-shadow-sm"
           />
-          <span className="text-[8px] sm:text-[9px] tracking-[0.22em] uppercase text-[#01BBDC] font-semibold mt-0.5 whitespace-nowrap">
-            Your Ground, Our Experience
-          </span>
         </a>
 
         {/* Desktop Navigation Links - Shown only on XL (>= 1280px) where spacing is ample */}

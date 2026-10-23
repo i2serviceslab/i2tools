@@ -43,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
           <img
             src="/i2-services-logo.png"
             alt="i2 Services S.A.S."
-            className="h-9 w-auto brightness-0 invert opacity-95 group-hover:opacity-100 transition-opacity"
+            className="h-9 w-auto opacity-95 group-hover:opacity-100 transition-opacity"
           />
         </a>
 

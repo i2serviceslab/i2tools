@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ lang, onLanguageChange }) => {
             <img
               src="/i2-services-logo.png"
               alt="i2 Services S.A.S."
-              className="h-8 w-auto brightness-0 invert opacity-90"
+              className="h-9 w-auto opacity-95"
             />
             <div className="hidden sm:block text-[11px] font-mono tracking-widest text-[#718CC1] border-l border-slate-800 pl-4">
               {lang === 'en' ? 'YOU GROUND, OUR EXPERIENCE' : 'SU TERRENO, NUESTRA EXPERIENCIA'}

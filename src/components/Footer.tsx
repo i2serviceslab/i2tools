@@ -30,12 +30,9 @@ export const Footer: React.FC<FooterProps> = ({ lang, onLanguageChange }) => {
             <div className="flex flex-col items-start">
               <img
                 src="/i2-services-logo.png"
-                alt="i2 Services S.A.S."
-                className="h-9 w-auto brightness-0 invert opacity-95 mb-2"
+                alt="i2 Services S.A.S. - You Ground, our Experience"
+                className="h-10 sm:h-11 w-auto opacity-95 hover:opacity-100 transition-opacity"
               />
-              <span className="text-[11px] tracking-[0.25em] uppercase text-[#01BBDC] font-semibold">
-                {lang === 'en' ? 'YOUR GROUND, OUR EXPERIENCE' : 'SU TERRENO, NUESTRA EXPERIENCIA'}
-              </span>
             </div>
 
             <p className="text-slate-300 text-sm leading-relaxed max-w-md font-normal">
