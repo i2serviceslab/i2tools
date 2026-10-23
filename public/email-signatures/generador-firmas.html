@@ -640,26 +640,12 @@ El Poblado · Medellín</textarea>
             : `background-color: #08172E; border: 1px solid rgba(113, 140, 193, 0.22); border-radius: 12px;`)
         : 'background-color: transparent;';
       const bgAttr = isForEmail ? `bgcolor="#08172E"${isGifBg ? ` background="${gifUrl}"` : ''}` : '';
-      const tdBg = isGifBg ? `background="${gifUrl}" style="padding: 22px 26px; background-image: url('${gifUrl}'); background-position: center center; background-repeat: no-repeat; background-size: cover;"` : 'style="padding: 22px 26px;"';
-
-      const vmlStart = isGifBg ? `
-      <!--[if gte mso 9]>
-      <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:580px; height:230px;">
-        <v:fill type="frame" src="${gifUrl}" color="#08172E" />
-        <v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
-      <![endif]-->` : '';
-
-      const vmlEnd = isGifBg ? `
-      <!--[if gte mso 9]>
-        </v:textbox>
-      </v:rect>
-      <![endif]-->` : '';
+      const tdBg = isGifBg ? `background="${gifUrl}" bgcolor="#08172E" style="padding: 22px 26px; background-color: #08172E; background-image: url('${gifUrl}'); background-position: center center; background-repeat: no-repeat; background-size: cover; border-radius: 12px;"` : 'style="padding: 22px 26px;"';
 
       return `
-<table cellpadding="0" cellspacing="0" border="0" ${bgAttr} style="${bgStyle} font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif; font-size: 13px; line-height: 1.4; color: #FFFFFF; max-width: 580px; width: 100%; border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+<table cellpadding="0" cellspacing="0" border="0" width="580" ${bgAttr} style="${bgStyle} font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif; font-size: 13px; line-height: 1.4; color: #FFFFFF; max-width: 580px; width: 100%; border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
   <tr>
-    <td ${tdBg}>
-      ${vmlStart}
+    <td width="580" height="230" ${tdBg}>
       <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse;">
         <tr>
           <td valign="middle" align="center" style="padding-right: 24px; vertical-align: middle; width: 150px; text-align: center;">
@@ -708,7 +694,6 @@ El Poblado · Medellín</textarea>
           </td>
         </tr>
       </table>
-      ${vmlEnd}
     </td>
   </tr>
 </table>`;
