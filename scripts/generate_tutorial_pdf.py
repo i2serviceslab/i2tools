@@ -483,11 +483,11 @@ def build_tutorial_pdf():
         ("%%DisplayName%%", "Nombre para mostrar (Nombre + Apellido)", "John Doe"),
         ("%%Title%%", "Cargo o Puesto de Trabajo", "Director de Operaciones"),
         ("%%Department%%", "Departamento / Área", "Exploración Estratégica"),
-        ("%%MobileNumber%%", "Teléfono Móvil / WhatsApp", "+57 300 123 4567"),
+        ("%%MobileNumber%%", "Teléfono Móvil / WhatsApp", "+57 323 375 0471"),
         ("%%PhoneNumber%%", "Teléfono de Oficina / PBX", "+57 (604) 444 5566"),
         ("%%Email%%", "Dirección de Correo Principal", "john.doe@i2services.co"),
         ("%%Company%%", "Organización o Compañía", "i2 Services S.A.S."),
-        ("%%Street%%", "Dirección Física de la Sede", "Cra. 43A #1 Sur 188, Of. 610, Torre Davivienda"),
+        ("%%Street%%", "Dirección Física de la Sede", "Cra. 43A #1 Sur 188, Of. 610, El Poblado"),
         ("%%City%%, %%State%%", "Ciudad y Departamento", "El Poblado, Medellín"),
     ]
 
@@ -683,7 +683,7 @@ def build_tutorial_pdf():
     p5.rect(45, y - 55, 522, 55, fill_rgb=NAVY_CARD, stroke_rgb=CARD_BORDER, line_width=1.0)
     p5.text("i2 Services S.A.S. - Soporte y Asistencia Técnica", 60, y - 18, font="F2", size=10.5, fill_rgb=WHITE)
     p5.text("Para asistencia en la configuración de la regla en Exchange o personalización de plantillas:", 60, y - 31, font="F1", size=8.5, fill_rgb=SLATE)
-    p5.text("Sitio Web: i2services.co   |   Sede: Cra. 43A #1 Sur 188, Of. 610, Torre Davivienda, Medellín", 60, y - 44, font="F2", size=8.5, fill_rgb=CYAN)
+    p5.text("Sitio Web: i2services.co   |   Sede: Cra. 43A #1 Sur 188, Of. 610, El Poblado, Medellín", 60, y - 44, font="F2", size=8.5, fill_rgb=CYAN)
 
     pdf.save()
     return pdf_path

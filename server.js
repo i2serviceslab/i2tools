@@ -198,7 +198,7 @@ app.post('/api/contact', async (req, res) => {
     </div>
     <div class="footer">
       Cra. 43A #1 Sur 188, Of. 610 • El Poblado, Medellín<br>
-      Tel: +57 (604) 444 5566 • <a href="https://i2services.co" style="color: #01BBDC; text-decoration: none;">i2services.co</a>
+      Tel: +57 323 375 0471 • <a href="https://i2services.co" style="color: #01BBDC; text-decoration: none;">i2services.co</a>
     </div>
   </div>
 </body>

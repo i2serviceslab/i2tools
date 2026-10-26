@@ -979,7 +979,7 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
             <label>Celular / WhatsApp</label>
-            <input type="text" id="inputMobile" value="+57 300 123 4567" oninput="updateSignature()">
+            <input type="text" id="inputMobile" value="+57 323 375 0471" oninput="updateSignature()">
           </div>
           <div class="form-group">
             <label>Teléfono Fijo / PBX</label>
@@ -997,7 +997,7 @@
         <div class="form-group">
           <label>Dirección / Sede Corporativa</label>
           <textarea id="inputAddress" rows="3" oninput="updateSignature()" style="width: 100%; resize: vertical; font-size: 12px; line-height: 1.4; background: rgba(0,0,0,0.25); border: 1px solid var(--border); color: #fff; border-radius: 6px; padding: 8px;">Cra. 43A #1 Sur 188
-Oficina 610 · Torre Davivienda
+Oficina 610
 El Poblado · Medellín</textarea>
         </div>
 
@@ -1309,7 +1309,7 @@ El Poblado · Medellín</textarea>
       const mobile = document.getElementById('inputMobile').value;
       const phone = document.getElementById('inputPhone').value;
       const email = document.getElementById('inputEmail').value || 'john.doe@i2services.co';
-      const rawAddress = document.getElementById('inputAddress')?.value || 'Cra. 43A #1 Sur 188\nOficina 610 · Torre Davivienda\nEl Poblado · Medellín';
+      const rawAddress = document.getElementById('inputAddress')?.value || 'Cra. 43A #1 Sur 188\nOficina 610\nEl Poblado · Medellín';
       const addressHtml = rawAddress.trim().replace(/\n/g, '<br>');
 
       const titleSubtitle = dept ? `${title} &nbsp;|&nbsp; ${dept}` : title;
@@ -1650,7 +1650,7 @@ El Poblado · Medellín</textarea>
         icon: "📍",
         title: "Sede Corporativa Medellín",
         content: `
-          <p style="margin-bottom:10px; line-height:1.5;">La sede oficial de Medellín (<i>Cra. 43A #1 Sur 188 · Oficina 610 · Torre Davivienda · El Poblado</i>) ya viene lista por defecto.</p>
+          <p style="margin-bottom:10px; line-height:1.5;">La sede oficial de Medellín (<i>Cra. 43A #1 Sur 188 · Oficina 610 · El Poblado</i>) ya viene lista por defecto.</p>
           <p style="font-size:12px; color:#94A3B8;">Si perteneces a otra oficina o proyecto en campo, puedes modificar este campo libremente.</p>
         `,
         placement: "right"

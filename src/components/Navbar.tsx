@@ -144,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
               </a>
 
               <div className="flex items-center justify-between px-3 text-xs text-slate-400 pt-2">
-                <span>Torre Davivienda · Medellín</span>
+                <span>El Poblado · Medellín</span>
                 <a href="mailto:info@i2services.co" className="text-[#01BBDC] hover:underline">info@i2services.co</a>
               </div>
             </div>
