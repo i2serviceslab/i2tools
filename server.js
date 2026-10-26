@@ -133,7 +133,7 @@ app.post('/api/contact', async (req, res) => {
       </div>
     </div>
     <div class="footer">
-      i2 Services S.A.S. • Torre Davivienda Of. 610, El Poblado, Medellín • Formulario Web
+      i2 Services S.A.S. • Medellín, Colombia • Formulario Web
     </div>
   </div>
 </body>
@@ -197,7 +197,7 @@ app.post('/api/contact', async (req, res) => {
       <p style="margin: 0;"><strong>Gerencia de Operaciones</strong><br><span style="color: #94A3B8; font-size: 13px;">i2 Services S.A.S.</span></p>
     </div>
     <div class="footer">
-      Cra. 43A #1 Sur 188, Of. 610 • Torre Davivienda, El Poblado, Medellín<br>
+      Cra. 43A #1 Sur 188, Of. 610 • El Poblado, Medellín<br>
       Tel: +57 (604) 444 5566 • <a href="https://i2services.co" style="color: #01BBDC; text-decoration: none;">i2services.co</a>
     </div>
   </div>
