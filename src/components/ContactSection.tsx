@@ -112,14 +112,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
           <div className="max-w-2xl mx-auto rounded-3xl p-8 sm:p-10 bg-[#273349]/70 border border-slate-700/80 shadow-2xl relative backdrop-blur-sm">
             {submitted ? (
               <div className="p-8 sm:p-10 text-center bg-[#08172E] rounded-2xl border border-emerald-500/30 space-y-4">
-                <CheckCircle2 className="w-14 h-14 text-emerald-400 mx-auto" />
-                <h3 className="text-2xl font-bold text-white">
-                  {lang === 'en' ? 'Inquiry Transmitted Successfully' : '¡Consulta Transmitida con Éxito!'}
+                <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  {lang === 'en' ? 'Message Sent' : '¡Mensaje Enviado!'}
                 </h3>
-                <p className="text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
+                <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
                   {lang === 'en'
-                    ? `Thank you, ${formData.name}. Our senior management team at Torre Davivienda (Medellín) has received your request regarding ${formData.company || 'your project'} and will review it promptly. A receipt confirmation has been dispatched to ${formData.email}.`
-                    : `Gracias, ${formData.name}. Nuestra gerencia en Torre Davivienda (Medellín) ha recibido su solicitud correspondiente a ${formData.company || 'su proyecto'} y la evaluará a la brevedad. Hemos enviado un acuse de recibo a ${formData.email}.`}
+                    ? `Thank you, ${formData.name}. We have received your inquiry and will contact you shortly.`
+                    : `Gracias, ${formData.name}. Hemos recibido su consulta y nos comunicaremos a la brevedad.`}
                 </p>
                 <div className="pt-4">
                   <button
