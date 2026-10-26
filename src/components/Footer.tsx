@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ lang, onLanguageChange }) => {
                 Cra. 43A #1 Sur 188
               </div>
               <div className="text-xs text-slate-300 font-medium">
-                Oficina 610
+                Oficina 610 · Torre Davivienda
               </div>
               <div className="text-xs text-slate-400">
                 El Poblado · Medellín
@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ lang, onLanguageChange }) => {
         {/* Bottom Bar: Copyright & Actions */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
           <div>
-            © 2026 i2 Services S.A.S. · Cra. 43A #1 Sur 188, Of. 610, Medellín, Colombia.
+            © 2026 i2 Services S.A.S. · Cra. 43A #1 Sur 188, Of. 610 · Torre Davivienda, Medellín, Colombia.
           </div>
 
           <div className="flex items-center gap-4">

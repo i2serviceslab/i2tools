@@ -122,7 +122,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                 {lang === 'en' ? 'Team Specialists' : 'Especialistas'}
               </div>
               <div className="text-xs text-[#718CC1]">
-                {lang === 'en' ? 'El Poblado, Medellín' : 'El Poblado, Medellín'}
+                {lang === 'en' ? 'Torre Davivienda, Medellín' : 'Torre Davivienda, Medellín'}
               </div>
             </div>
           </ScrollReveal>

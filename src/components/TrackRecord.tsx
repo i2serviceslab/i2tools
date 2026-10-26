@@ -27,7 +27,7 @@ export const TrackRecord: React.FC<TrackRecordProps> = ({ lang }) => {
       targetNumber: 22,
       displayNumber: (n: number) => `${n}`,
       title: { en: 'Multidisciplinary Team', es: 'Equipo Multidisciplinario' },
-      detail: { en: 'With a permanent physical office in Medellín.', es: 'Con oficina física propia en Medellín (El Poblado).' }
+      detail: { en: 'With a permanent physical office in Medellín (Torre Davivienda).', es: 'Con oficina física propia en Medellín (Torre Davivienda).' }
     },
     {
       targetNumber: 58,

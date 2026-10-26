@@ -43,8 +43,8 @@ export const HowWeWorkMotionGraphic: React.FC<HowWeWorkMotionGraphicProps> = ({ 
       number: '03',
       title: { en: 'Team Assignment', es: 'Asignación de Equipo' },
       shortText: {
-        en: 'Dedicated corporate counsel and bilingual mining accountants based in Medellín.',
-        es: 'Abogados corporativos y contadores propios asignados desde Medellín.'
+        en: 'Dedicated corporate counsel and bilingual mining accountants based in Torre Davivienda, Medellín.',
+        es: 'Abogados corporativos y contadores propios asignados desde Torre Davivienda, Medellín.'
       },
       image: '/extracted/img_1.jpg',
       imageAlt: { en: 'In-house team meeting in Medellín', es: 'Equipo multidisciplinario propio' }

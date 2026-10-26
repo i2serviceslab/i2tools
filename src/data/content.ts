@@ -19,7 +19,7 @@ export const siteContent = {
       en: 'You explore and raise capital. We manage your mining project in Colombia with verified local knowledge, public-company governance, and junior-company cost efficiency.',
       es: 'Usted explora y levanta capital. Nosotros administramos su proyecto minero en Colombia con conocimiento real del territorio y estándares de una compañía listada en Canadá o EE. UU., a costo de junior.'
     },
-    address: 'Cra. 43A #1 Sur 188, Of. 610 · El Poblado · Medellín, Colombia',
+    address: 'Cra. 43A #1 Sur 188, Of. 610 · Torre Davivienda · El Poblado, Medellín, Colombia',
     email: 'info@i2services.co',
     phone: '+57 323 375 0471'
   },
@@ -45,7 +45,7 @@ export const siteContent = {
       },
       detail: {
         en: 'Multidisciplinary team in law, finance, geology, mining and technology based in Medellín.',
-        es: 'Equipo multidisciplinario con oficina física en El Poblado, Medellín.'
+        es: 'Equipo multidisciplinario con oficina física en la Torre Davivienda, Medellín.'
       }
     },
     {
