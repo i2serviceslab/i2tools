@@ -56,24 +56,34 @@ git push -u origin main
 - **Build Type:** Selecciona **Dockerfile** (el Dockerfile ya está listo en la raíz).
 
 ### Puertos y Dominios (Domains):
-- **Port:** Escribe `80` (Nginx escucha internamente en el puerto 80).
+- **Port:** Escribe `80` (el servidor escucha internamente en el puerto 80).
 - **Domain:** Ingresa tu dominio (ej. `i2services.co` o tu subdominio).
 - Marca la opción de **HTTPS / SSL** (EasyPanel emitirá automáticamente el certificado Let's Encrypt).
+
+### Variables de Entorno (Environment Variables):
+En la pestaña **Environment** de tu servicio en EasyPanel, agrega:
+
+| Variable | Valor | Descripción |
+| :--- | :--- | :--- |
+| `RESEND_API_KEY` | `re_xxxxxxxxxxxxxxxx` | Clave API generada en tu panel de Resend (API Keys) |
+| `CONTACT_NOTIFICATION_EMAIL` | `info@i2services.co` | Correo donde el equipo de i2 recibe los prospectos |
+| `RESEND_FROM_EMAIL` | `i2 Services Web <contacto@i2services.co>` | Remitente oficial autenticado vía DKIM/SPF |
+
+*(Nota: Si aún no configuras la `RESEND_API_KEY`, el servidor guardará los mensajes recibidos en los registros de EasyPanel sin perder ningún contacto).*
 
 ### Despliegue:
 - Haz clic en el botón verde **"Deploy"**.
 - EasyPanel se encargará de:
   1. Instalar dependencias con `npm ci`.
   2. Compilar el sitio con `npm run build`.
-  3. Empaquetar todo en una imagen ligera de Nginx (`nginx:alpine`).
-  4. Aplicar compresión Gzip y headers de seguridad automáticos.
-  5. Activar el contenedor con reinicio automático.
+  3. Ejecutar el servidor corporativo Node.js optimizado con compresión Gzip y headers de seguridad.
+  4. Habilitar el endpoint `/api/contact` para recepción y envío de correos salientes transaccionales.
 
 ---
 
 ## 🛠️ Estructura Docker Creada
 
-- **`Dockerfile`**: Compilación multi-stage (Node 20 Alpine -> Nginx 1.27 Alpine).
-- **`nginx.conf`**: Configuración optimizada con soporte SPA, compresión Gzip, caché de 30 días para assets/videos y redirecciones limpias para `/firmas` y `/vacantes`.
+- **`Dockerfile`**: Compilación multi-stage (Node 20 Alpine Builder -> Node 20 Alpine Runner).
+- **`server.js`**: Servidor de producción que gestiona los correos con Resend, acuses de recibo HTML para el cliente y el equipo, redirecciones limpias (`/firmas`, `/vacantes`) y compresión de activos.
 - **`.dockerignore`**: Excluye carpetas innecesarias para mantener builds ultra rápidos.
 - **`docker-compose.yml`**: Plantilla de orquestación compatible para despliegue directo.

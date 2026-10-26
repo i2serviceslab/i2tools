@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Language } from '../types';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { Send, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 interface ContactSectionProps {
@@ -15,18 +15,59 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
     phone: '',
     message: ''
   });
+  const [loading, setLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    const subject = encodeURIComponent(`[i2 Services Inquiry] ${formData.company} - ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`
-    );
-    setTimeout(() => {
-      window.location.href = `mailto:info@i2services.co?subject=${subject}&body=${body}`;
-    }, 600);
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (response.ok && data?.success) {
+        setSubmitted(true);
+      } else {
+        const errorMsg = data?.error || (
+          lang === 'en'
+            ? 'We were unable to deliver your message. Please try again or email us directly at info@i2services.co'
+            : 'No fue posible transmitir su consulta. Por favor intente nuevamente o escríbanos directamente a info@i2services.co'
+        );
+        setError(errorMsg);
+      }
+    } catch (err) {
+      console.error('Contact submission error:', err);
+      // Fallback in case API is temporarily unavailable
+      setError(
+        lang === 'en'
+          ? 'Network error. Please try again or contact us directly at info@i2services.co'
+          : 'Error de conexión. Intente nuevamente o contáctenos directamente a info@i2services.co'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      name: '',
+      company: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+    setSubmitted(false);
+    setError(null);
   };
 
   return (
@@ -70,19 +111,35 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
         <ScrollReveal direction="up" delay={150} duration={800}>
           <div className="max-w-2xl mx-auto rounded-3xl p-8 sm:p-10 bg-[#273349]/70 border border-slate-700/80 shadow-2xl relative backdrop-blur-sm">
             {submitted ? (
-              <div className="p-10 text-center bg-[#08172E] rounded-2xl border border-emerald-500/30">
-                <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-white mb-2">
-                  {lang === 'en' ? 'Inquiry Transmitted' : 'Consulta Transmitida'}
+              <div className="p-8 sm:p-10 text-center bg-[#08172E] rounded-2xl border border-emerald-500/30 space-y-4">
+                <CheckCircle2 className="w-14 h-14 text-emerald-400 mx-auto" />
+                <h3 className="text-2xl font-bold text-white">
+                  {lang === 'en' ? 'Inquiry Transmitted Successfully' : '¡Consulta Transmitida con Éxito!'}
                 </h3>
-                <p className="text-sm text-slate-300">
+                <p className="text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
                   {lang === 'en'
-                    ? 'Thank you. Our senior management team in Torre Davivienda, Medellín will contact you promptly.'
-                    : 'Gracias. Nuestra gerencia en Torre Davivienda, Medellín se comunicará a la brevedad.'}
+                    ? `Thank you, ${formData.name}. Our senior management team at Torre Davivienda (Medellín) has received your request regarding ${formData.company || 'your project'} and will review it promptly. A receipt confirmation has been dispatched to ${formData.email}.`
+                    : `Gracias, ${formData.name}. Nuestra gerencia en Torre Davivienda (Medellín) ha recibido su solicitud correspondiente a ${formData.company || 'su proyecto'} y la evaluará a la brevedad. Hemos enviado un acuse de recibo a ${formData.email}.`}
                 </p>
+                <div className="pt-4">
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-colors cursor-pointer border border-slate-600"
+                  >
+                    {lang === 'en' ? '← Send another inquiry' : '← Enviar otra consulta'}
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                  <div className="p-4 rounded-xl bg-rose-950/60 border border-rose-500/40 flex items-start gap-3 text-rose-200 text-xs leading-relaxed">
+                    <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+                    <div>{error}</div>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1.5">
@@ -91,9 +148,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                     <input
                       type="text"
                       required
+                      disabled={loading}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors disabled:opacity-50"
                       placeholder="David Henderson"
                     />
                   </div>
@@ -104,9 +162,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                     <input
                       type="text"
                       required
+                      disabled={loading}
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors disabled:opacity-50"
                       placeholder="Andean Exploration Ltd."
                     />
                   </div>
@@ -120,9 +179,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                     <input
                       type="email"
                       required
+                      disabled={loading}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors disabled:opacity-50"
                       placeholder="d.henderson@andean.ca"
                     />
                   </div>
@@ -132,9 +192,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                     </label>
                     <input
                       type="tel"
+                      disabled={loading}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors disabled:opacity-50"
                       placeholder="+1 (416) 555-0199"
                     />
                   </div>
@@ -142,13 +203,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
 
                 <div>
                   <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    {lang === 'en' ? 'OPERATIONAL NEEDS / CONCESSION DETAILS' : 'DETALLES DE SU OPERACIÓN / CONCESIÓN'}
+                    {lang === 'en' ? 'OPERATIONAL NEEDS / CONCESSION DETAILS *' : 'DETALLES DE SU OPERACIÓN / CONCESIÓN *'}
                   </label>
                   <textarea
                     rows={4}
+                    required
+                    disabled={loading}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors resize-none"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#08172E] border border-slate-700 text-white text-sm outline-none focus:border-[#01BBDC] transition-colors resize-none disabled:opacity-50"
                     placeholder={
                       lang === 'en'
                         ? 'Brief overview of your exploration program, title status, banking or legal needs...'
@@ -160,10 +223,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="btn-press w-full py-3.5 px-6 rounded-xl bg-[#01BBDC] hover:bg-[#38BDF8] text-[#08172E] font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#01BBDC]/20 transition-all"
+                    disabled={loading}
+                    className="btn-press w-full py-3.5 px-6 rounded-xl bg-[#01BBDC] hover:bg-[#38BDF8] disabled:bg-slate-700 text-[#08172E] disabled:text-slate-400 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#01BBDC]/20 transition-all cursor-pointer disabled:cursor-not-allowed"
                   >
-                    <span>{lang === 'en' ? 'Submit Introduction Request' : 'Enviar Solicitud de Presentación'}</span>
-                    <Send className="w-4 h-4" />
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-[#08172E]" />
+                        <span>{lang === 'en' ? 'Submitting Inquiry...' : 'Transmitiendo Consulta...'}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>{lang === 'en' ? 'Submit Introduction Request' : 'Enviar Solicitud de Presentación'}</span>
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
                   </button>
                 </div>
 

@@ -1,6 +1,7 @@
 # ==============================================================
 # i2 Services S.A.S. - Production Multi-Stage Dockerfile
 # Optimized for EasyPanel, GitHub CI/CD, and Docker Compose
+# Includes Node.js API backend (Resend integration) & Static Assets
 # ==============================================================
 
 # Stage 1: Build the Vite + React web application
@@ -18,24 +19,30 @@ COPY . .
 # Build production assets (Vite React App + public static generators)
 RUN npm run build
 
-# Stage 2: Serve with lightweight, high-performance Nginx
-FROM nginx:1.27-alpine AS runner
+# Stage 2: Production Server (Node 20 Alpine)
+FROM node:20-alpine AS runner
 
-# Remove default nginx static html files
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=80
+
+# Install production dependencies only
+COPY package*.json ./
+RUN npm ci --omit=dev
 
 # Copy built distribution from builder
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist ./dist
 
-# Copy custom Nginx configuration with friendly routes & gzip
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy server script
+COPY server.js ./
 
 # Expose HTTP port for EasyPanel
 EXPOSE 80
 
 # Healthcheck for container orchestrators (EasyPanel / Swarm / Docker)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-  CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+  CMD wget --quiet --tries=1 --spider http://localhost/api/health || exit 1
 
-# Start Nginx in foreground
-CMD ["nginx", "-g", "daemon off;"]
+# Start Node production server
+CMD ["node", "server.js"]
