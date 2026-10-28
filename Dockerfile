@@ -37,12 +37,8 @@ COPY --from=builder /app/dist ./dist
 # Copy server script
 COPY server.js ./
 
-# Expose HTTP port for EasyPanel
-EXPOSE 80
-
-# Healthcheck for container orchestrators (EasyPanel / Swarm / Docker)
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1/api/health').then(r=>r.ok?process.exit(0):process.exit(1)).catch(()=>process.exit(1))"
+# Expose HTTP ports for EasyPanel (supports 80 and 3000)
+EXPOSE 80 3000
 
 # Start Node production server
 CMD ["node", "server.js"]

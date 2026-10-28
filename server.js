@@ -255,8 +255,19 @@ app.use((req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));
 });
 
-// Start listening
+// Start listening on primary port
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✓ i2 Services Production Server running on http://0.0.0.0:${PORT}`);
   console.log(`  Resend Integration: ${process.env.RESEND_API_KEY ? 'ACTIVE' : 'STANDBY (Awaiting RESEND_API_KEY)'}`);
 });
+
+// Dual-port binding to support any EasyPanel port configuration (80 or 3000)
+const fallbackPort = PORT === 80 ? 3000 : 80;
+try {
+  const fallbackServer = app.listen(fallbackPort, '0.0.0.0', () => {
+    console.log(`✓ Dual-port listener active on port ${fallbackPort}`);
+  });
+  fallbackServer.on('error', (err) => {
+    console.log(`[Server] Secondary port ${fallbackPort} bypass: ${err.message}`);
+  });
+} catch (e) {}
