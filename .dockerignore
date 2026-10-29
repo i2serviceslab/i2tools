@@ -6,7 +6,6 @@ Thumbs.db
 
 # Dependencies & Build artifacts
 node_modules
-dist
 npm-debug.log*
 
 # Environment & Agent temporary files
